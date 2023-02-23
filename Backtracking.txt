@@ -1,0 +1,26 @@
+@ Peruna's back-tracking solution
+\<< \-> num
+    \<<
+        \<< \->STR DUP REV == \>> 'P?' STO
+        \<< \->STR DUP REV + OBJ\-> \>> 'LP' STO
+        \<< \->STR DUP REV TAIL + OBJ\-> \>> 'SP' STO
+        \<< DUP \->STR DUP SIZE 2 IDIV2 DUP 4 ROLLD + 1 SWAP SUB SWAP
+            :: SP :: LP IFTE DUP2 < :: P\|v IFT \>> '\->P' STO
+        \<< DUP 1 - DUP XPON ALOG \=/
+            { \->STR DUP SIZE 2 IDIV2 DUP 4 ROLLD + 1 SWAP SUB OBJ\->
+              1 - \->STR SWAP :: SP :: LP IFTE }
+            { 2 - }
+            IFTE \>> 'P\|v' STO
+        \<< DUP P? { 0 2 \->LIST } { \->P T } IFTE \>> 'P2' STO
+        \<< DUP2 - DUP2 <
+            { 3 DROPN 0 }
+            { DUP P? {2 \->LIST NIP } { DROP P\|v T} IFTE }
+            IFTE \>> 'T' STO
+        \<< DUP P? EVAL { 0 0 3 \->LIST } { \->P EVAL U EVAL } IFTE
+        \>> 'P3' STO
+        \<< DUP2 - P2 DUP TYPE { + NIP } { DROP2 P\|v U } IFTE \>> 'U' STO
+        num P3 EVAL LIST\-> DROP
+        { P? LP SP \->P P\|v P2 T P3 U } PURGE
+    \>>
+\>>
+'SMALL' STO

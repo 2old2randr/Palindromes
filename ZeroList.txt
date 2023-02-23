@@ -1,0 +1,6 @@
+@ Generate a list of length 'n' with every element set to 0
+@   n --> list
+\<< 1 SWAP {} UNROT
+    START 0 + NEXT
+\>>
+'ZEROLST' STO

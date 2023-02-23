@@ -1,0 +1,148 @@
+@ Given a list of digits for a number, returns the type (A1..A6,
+@ B1..B7) and whether it is special (1) or normal (0)
+@   digits --> type | 1/0
+\<< DUP SIZE \-> d n
+    \<< n ZEROLST 3 NDUPN DROP
+        d 1 GET d 2 GET d 3 GET d n GET         @ to avoid multiple GETs
+        \-> p1 p2 p3 d1 d2 d3 dn
+        \<< IF d2 2 >
+               dn d1 - d2 - 1 + 10 MOD AND
+            THEN "A1"
+                d1 DUP p1 1 ROT PUT SWAP p1 n ROT PUT ADD 'p1' STO
+                d2 1 - DUP p2 2 ROT PUT SWAP p2 n ROT PUT ADD 'p2' STO
+                dn d1 - d2 - 1 + 10 MOD DUP
+                p3 3 ROT PUT SWAP p3 n ROT PUT ADD 'p3' STO
+            ELSE IF d2 2 >
+                    dn d1 - d2 - 1 + 10 MOD NOT AND
+            THEN "A2"
+                  d1 DUP p1 1 ROT PUT SWAP p1 n ROT PUT  ADD 'p1' STO
+                  d2 2 - DUP p2 2 ROT PUT SWAP p2 n ROT PUT ADD 'p2' STO
+                  p3 3 1 PUT p3 n 1 PUT ADD 'p3' STO
+            ELSE IF d2 2 \<=
+                    d1 1 \=/ AND
+                    dn d1 - 2 + 10 MOD AND
+            THEN "A3"
+                  d1 1 - DUP p1 1 ROT PUT SWAP p1 n ROT PUT ADD 'p1' STO
+                  p2 2 9 PUT p2 n 9 PUT ADD 'p2' STO
+                  dn d1 - 2 + 10 MOD DUP
+                  p3 3 ROT PUT SWAP p3 n ROT PUT ADD 'p3' STO
+            ELSE IF d2 2 \<=
+                    d1 1 \=/ AND
+                    dn d1 - 2 + 10 MOD NOT AND
+            THEN "A4"
+                  d1 1 - DUP p1 1 ROT PUT SWAP p1 n ROT PUT ADD 'p1' STO
+                  p2 2 8 PUT p2 n 8 PUT ADD 'p2' STO
+                  p3 3 1 PUT p3 n 1 PUT ADD 'p3' STO
+            ELSE IF d1 1 ==
+                    d2 0 == AND
+                    d3 3 \<= AND
+                    dn d3 - 10 MOD AND
+            THEN "A5"
+                 p1 2 9 PUT p1 n 9 PUT ADD 'p1' STO
+                 d3 1 + DUP p2 3 ROT PUT SWAP p2 n ROT PUT ADD 'p2' STO
+                 dn d3 - 10 MOD DUP
+                 p3 4 ROT PUT SWAP p3 n ROT PUT ADD 'p3' STO
+            ELSE IF d1 1 ==
+                    d2 0 == AND
+                    d3 2 \<= AND
+                    dn d3 - 10 MOD NOT AND
+            THEN "A6"
+                 p1 2 9 PUT p1 n 9 PUT ADD 'p1' STO
+                 d3 2 + DUP p2 3 ROT PUT SWAP p2 n ROT PUT ADD 'p2' STO
+                 p3 4 9 PUT p3 n 9 PUT ADD 'p3' STO
+            ELSE IF d1 1 ==
+                    d2 2 \<= AND
+                    d3 4 \>= AND
+                    dn d3 - 10 MOD AND
+            THEN "B1"
+                 p1 1 1 PUT p1 n 1
+                 d2 DUP p1 2 ROT PUT SWAP p1 n 1 - ROT PUT ADD ADD ADD 'p1' STO
+                 d3 1 - DUP p2 3 ROT PUT SWAP p2 n ROT PUT ADD 'p2' STO
+                 dn d3 - 10 MOD DUP
+                 p3 4 ROT PUT SWAP p3 n ROT PUT ADD 'p3' STO
+            ELSE IF d1 1 ==
+                    d2 2 \<= AND
+                    d3 3 \>= AND
+                    dn d3 - 10 MOD NOT AND
+            THEN "B2"
+                 p1 1 1 PUT p1 n 1 PUT
+                 d2 DUP p1 2 ROT PUT SWAP p1 n 1 - ROT PUT ADD ADD ADD 'p1' STO
+                 d3 2 - DUP p2 3 ROT PUT SWAP p2 n ROT PUT ADD 'p2' STO
+                 p3 4 1 PUT p3 n 1 PUT ADD 'p3' STO
+            ELSE IF d1 1 ==
+                    d2 3 < AND
+                    d2 0 \=/ AND
+                    d3 2 < AND
+                    dn 0 == AND
+            THEN "B3"
+                 p1 1 1 PUT p1 n 1 PUT
+                 d2 1 - DUP p1 2 ROT PUT SWAP p1 n 1 - ROT PUT ADD ADD ADD 'p1' STO
+                 p2 3 8 PUT p2 n 8 PUT ADD 'p2' STO
+                 p3 4 1 PUT p3 n 1 PUT ADD 'p3' STO
+            ELSE IF d1 1 ==
+                    d2 3 < AND
+                    d2 0 \=/ AND
+                    d3 1 > AND
+                    d3 4 < AND
+                    dn 0 == AND
+            THEN "B4"
+                 p1 1 1 PUT p1 n 1 PUT
+                 d2 DUP p1 2 ROT PUT SWAP p1 n 1 - ROT PUT ADD ADD ADD 'p1' STO
+                 p2 3 1 PUT p2 n 1 PUT ADD 'p2' STO
+                 p3 4 8 PUT p3 n 8 PUT ADD 'p3' STO
+            ELSE IF d1 1 ==
+                    d2 3 < AND
+                    d2 0 \=/ AND
+                    d3 3 < AND
+                    dn 0 \=/ AND
+            THEN "B5"
+                 p1 1 1 PUT p1 n 1 PUT
+                 d2 1 - DUP p1 2 ROT PUT SWAP p1 n 1 - ROT PUT ADD ADD ADD 'p1' STO
+                 p2 3 9 PUT p2 n 9 PUT ADD 'p2' STO
+                 dn DUP p3 4 ROT PUT SWAP p3 n ROT PUT ADD 'p3' STO
+            ELSE IF d1 1 ==
+                    d2 3 < AND
+                    d2 0 \=/ AND
+                    d3 3 == AND
+                    dn 3 - 10 MOD AND
+            THEN "B6"
+                 p1 1 1 PUT p1 n 1 PUT
+                 d2 DUP p1 2 ROT PUT SWAP p1 n 1 - ROT PUT ADD ADD ADD 'p1' STO
+                 p2 3 2 PUT p2 n 2 PUT ADD 'p2' STO
+                 dn 3 - 10 MOD DUP
+                 p3 4 ROT PUT SWAP p3 n ROT PUT ADD 'p3' STO
+            ELSE IF d1 1 ==
+                    d2 3 < AND
+                    d2 0 \=/ AND
+                    d3 3 == AND
+                    dn 3 == AND
+            THEN "B7"
+                 p1 1 1 PUT p1 n 1 PUT
+                 d2 DUP p1 2 ROT PUT SWAP p1 n 1 - ROT PUT ADD ADD ADD 'p1' STO
+                 p2 3 1 PUT p2 n 1 PUT ADD 'p2' STO
+                 p3 4 1 PUT p3 n 1 PUT ADD 'p3' STO
+            ELSE
+                 "Unknown"
+            END END END END END END END END END END END END END
+            p1 CMPLST 'p1' STO
+            p2 CMPLST 'p2' STO
+            p3 CMPLST 'p3' STO
+            d REVLIST 'd' STO
+            @ Special or normal?
+            p1 SIZE 'n' STO
+            IF n 2 MOD NOT THEN
+                IF d n 2 / GET 0 ==
+                   d n 2 / 1 + GET 0 == OR
+                THEN
+                    1
+                ELSE
+                    0
+                END
+            ELSE
+                0
+            END
+            d p1 p2 p3
+        \>>
+    \>>
+\>>
+'NTYPE' STO

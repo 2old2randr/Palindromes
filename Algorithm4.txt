@@ -1,0 +1,376 @@
+@ Algorithm applied to numbers of type 'B' with an even number of digits
+@ Inputs on stack are lists of digits of the number (lsb first)
+@ and starting guesses for the palindromes
+@ digits | p1 | p2 | p3 --> palindrome-1 | palindrome-2 | palindrome-3
+\<< \-> d p1 p2 p3
+    \<< p1 SIZE ZEROLST
+        p1 SIZE 2 / IP
+        p1 SIZE
+        p2 SIZE
+        p3 SIZE
+        p1 1 GET
+        p2 1 GET
+        p3 1 GET
+        0 0 0
+        \-> c m l1 l2 l3 x y z d1 d2 ci
+        \<< x y + z + 10 / IP 'ci' STO
+            c 1 ci PUT 'c' STO
+            d 2 m * 3 - GET 'd1' STO
+            d 2 m * 2 - GET 'd2' STO
+            IF z d1 < THEN
+                d2 y - 10 MOD 'x' STO
+            ELSE
+                d2 y - 1 - 10 MOD 'x' STO
+            END
+            @ p1 has two digits populated (both 1) so
+            @ the subscript is 1 more than the one for p2 and p3
+            p1 3 x PUT 'p1' STO
+            p1 l1 2 - x PUT 'p1' STO
+            d1 z - 1 - 10 MOD 'y' STO
+            p2 2 y PUT 'p2' STO
+            p2 l2 1 - y PUT 'p2' STO
+            d 2 GET p1 2 GET - y - ci - 10 MOD 'z' STO
+            p3 2 z PUT 'p3' STO
+            p3 l3 1 - z PUT 'p3' STO
+            p1 2 GET y + z + ci + d 2 GET - 10 / IP 'ci' STO
+            c 2 ci PUT 'c' STO
+            IF m 4 > THEN
+                3 m 2 -
+                FOR i
+                    d 2 m * i - 1 - GET 'd1' STO
+                    d i GET 'd2' STO
+                    IF z d1 < THEN
+                        1 'x' STO
+                    ELSE
+                        0 'x' STO
+                    END
+                    p1 i 1 + x PUT 'p1' STO
+                    p1 l1 i - x PUT 'p1' STO
+                    d1 z - 1 - 10 MOD 'y' STO
+                    p2 i y PUT 'p2' STO
+                    p2 l2 i - 1 + y PUT 'p2' STO
+                    d2 p1 i GET - y - ci - 10 MOD 'z' STO
+                    p3 i z PUT 'p3' STO
+                    p3 l3 i - 1 + z PUT 'p3' STO
+                    p1 i GET y + z + ci + d2 - 10 / IP 'ci' STO
+                    c i ci PUT 'c' STO
+                NEXT
+            END
+            d m GET 'd1' STO
+            d m 1 - GET 'd2' STO
+            IF z d1 < THEN
+                p1 m 1 PUT 'p1' STO
+                p1 m 1 + 1 PUT 'p1' STO
+            ELSE
+                p1 m 0 PUT 'p1' STO
+                p1 m 1 + 0 PUT 'p1' STO
+            END
+            d1 z - 1 - 10 MOD 'y' STO
+            p2 m 1 - y PUT 'p2' STO
+            p2 m y PUT 'p2' STO
+            d2 p1 m 1 - GET - y - ci - 10 MOD 'z' STO
+            p3 m 1 - z PUT 'p3' STO
+
+            x y + z + ci + 10 / IP 'ci' STO
+            c m 1 - ci PUT 'c' STO
+
+            IF p1 m 1 - GET c m 1 - GET + 0 ==   @ IV.2
+               p2 m 1 - GET 9 \=/ AND THEN
+                IF p3 m 1 - GET 0 \=/ THEN    @ IV.2.i
+                    p2 m GET 1 + 'y' STO
+                    p2 m y PUT 'p2' STO
+                    p2 m 1 - y PUT 'p2' STO
+                    p3 m 1 - GET 1 -
+                    p3 m 1 - PUT 'p' STO
+                ELSE IF p2 y m 2 - GET 0 \=/ THEN    @ IV.2.ii
+                    p2 m 1 + GET 1 - 'y' STO
+                    p2 m 1 + y PUT 'p2' STO
+                    p2 m 2 - y PUT 'p2' STO
+                    IF p2 m 1 - GET 1 \=/
+                       p3 m 2 - 9 \=/ AND THEN       @ IV.2.ii.a
+                        p1 m 1 + 1 PUT 'p1' STO
+                        p1 m 1 PUT 'p1' STO
+                        p2 m GET 1 - 'y' STO
+                        p2 m y PUT 'p2' STO
+                        p2 m 1 - y PUT 'p2' STO
+                        p3 m GET 1 + 'z' STO
+                        p3 m z PUT 'p3' STO
+                        p3 m 2 - z PUT 'p3' STO
+                        p3 m 1 - 1 PUT 'p3' STO
+                    ELSE IF p2 m 1 - GET 1 \=/ THEN      @ IV.2.ii.b
+                        p1 m 1 + 2 PUT 'p1' STO
+                        p1 m 2 PUT 'p1' STO
+                        p2 m GET 2 - 'y' STO
+                        p2 m y PUT 'p2' STO
+                        p2 m 1 - y PUT 'p2' STO
+                        p3 m 0 PUT 'p3' STO
+                        p3 m 2 - 0 PUT 'p3' STO
+                        p3 m 1 - 3 PUT 'p3' STO
+                    ELSE                             @ IV.2.ii.c
+                        p1 m 1 + 1 PUT 'p1' STO
+                        p1 m 1 PUT 'p1' STO
+                        p2 m 9 PUT 'p2' STO
+                        p2 m 1 - 9 PUT 'p2' STO
+                        p3 m 0 PUT 'p3' STO
+                        p3 m 2 - 0 PUT 'p3' STO
+                        p3 m 1 - 3 PUT 'p3' STO
+                    END END
+                ELSE IF p3 m 1 - GET 0 ==            @ IV.2.iii
+                        p2 m 2 - GET - == THEN
+                    p1 m 2 + GET 1 - 'x' STO
+                    p1 m 2 + x PUT 'p1' STO
+                    p1 m 1 - x PUT 'p1' STO
+                    IF p3 m 2 - GET 9 \=/ THEN       @ IV.2.iii.a
+                        p1 m 1 + 1 PUT 'p1' STO
+                        p1 m 1 PUT 'p1' STO
+                        p2 m 1 + 9 PUT 'p2' STO
+                        p2 m 2 - 9 PUT 'p2' STO
+                        p2 m GET 1 - 'y' STO
+                        p2 m y PUT 'p2' STO
+                        p2 m 1 - y PUT 'p2' STO
+                        p3 m GET 1 + 'z' STO
+                        p3 m z PUT 'p3' STO
+                        p3 m 2 - z PUT 'p3' STO
+                        p3 m 1 - 1 PUT 'p3' STO
+                    ELSE IF p2 m 1 - GET 1 \=/ THEN  @ IV.2.iii.b
+                        p1 m 1 + 2 PUT 'p1' STO
+                        p1 m 2 PUT 'p1' STO
+                        p2 m 1 + 9 PUT 'p2' STO
+                        p2 m 2 - 9 PUT 'p2' STO
+                        p2 m GET 2 - 'y' STO
+                        p2 m y PUT 'p2' STO
+                        p2 m 1 - y PUT 'p2' STO
+                        p3 m 0 PUT 'p3' STO
+                        p3 m 1 - 3 PUT 'p3' STO
+                        p3 m 2 - 0 PUT 'p3' STO
+                    ELSE                             @ IV.2.iii.c
+                        p1 m 1 + 1 PUT 'p1' STO
+                        p1 m 1 PUT 'p1' STO
+                        p2 m 1 + 9 PUT 'p2' STO
+                        p2 m 9 PUT 'p2' STO
+                        p2 m 1 - 9 PUT 'p2' STO
+                        p2 m 2 - 9 PUT 'p2' STO
+                        p3 m 0 PUT 'p3' STO
+                        p3 m 1 - 3 PUT 'p3' STO
+                        p3 m 2 - 0 PUT 'p3' STO
+                    END END
+                END END END
+            ELSE IF p1 m 1 - GET c m 1 - GET + 0 == THEN @ IV.3
+                p1 m 1 + 1 PUT 'p1' STO
+                p1 m 1 PUT 'p1' STO
+                p2 m 1 + GET 1 - 'y' STO
+                p2 m 1 + y PUT 'p2' STO
+                p2 m 2 - y PUT 'p2' STO
+                p2 m 8 PUT 'p2' STO
+                p2 m 1 - 8 PUT 'p2' STO
+                p3 m GET 1 + 'z' STO
+                p3 m z PUT 'p3' STO
+                p3 m 2 - z PUT 'p3' STO
+                p3 m 1 - 1 PUT 'p3' STO
+            ELSE IF p1 m 1 - GET c m 1 - GET + 2 ==
+                    p1 m 1 - GET 0 == AND THEN           @ IV.4
+                IF p3 m 1 - GET 9 \=/ THEN      @ IV.4.i
+                    p2 m GET 1 - 'y' STO
+                    p2 m y PUT 'p2' STO
+                    p2 m 1 - y PUT 'p2' STO
+                    p3 m 1 - GET 1 + 'z' STO
+                    p3 m 1 - z PUT 'p3' STO
+                ELSE IF p3 m 2 - GET 9 \=/ THEN     @ IV.4.ii
+                    p1 m 1 PUT 'p1' STO
+                    p1 m 1 + 1 PUT 'p1' STO
+                    p2 m GET 2 - 'y' STO
+                    p2 m y PUT 'p2' STO
+                    p2 m 1 - y PUT 'p2' STO
+                    p3 m GET 1 + 'z' STO
+                    p3 m z PUT 'p3' STO
+                    p3 m 2 - z PUT 'p3' STO
+                    p3 m 1 - 1 PUT 'p3' STO
+                    IF p2 m 2 - GET 0 \=/ THEN  @ IV.4.ii.a
+                        p2 m 1 + GET 1 - 'y' STO
+                        p2 m 1 + y PUT 'p2' STO
+                        p2 m 2 - y PUT 'p2' STO
+                    ELSE                        @ IV.4.ii.b
+                        p1 m 1 - GET 1 - 'x' STO
+                        p1 m 2 + x PUT 'p1' STO
+                        p1 m 1 - x PUT 'p1' STO
+                        p2 m 1 + 9 PUT 'p2' STO
+                        p2 m 2 - 9 PUT 'p2' STO
+                    END
+                ELSE                            @ IV.4.iii
+                    IF p2 m 1 - GET 7 \<= THEN      @ IV.4.iii.a
+                        p1 m 1 + 8 PUT 'p1' STO
+                        p1 m 8 PUT 'p1' STO
+                        p2 m GET 2 + 'y' STO
+                        p2 m y PUT 'p2' STO
+                        p2 m 1 - y PUT 'p2' STO
+                        p3 m 8 PUT 'p3' STO
+                        p3 m 1 - 8 PUT 'p3' STO
+                        p3 m 2 - 8 PUT 'p3' STO
+                        IF p2 m 2 - GET 9 \=/ THEN  @ IV.4.iii.a.1
+                            p1 m 2 + GET 1 - 'x' STO
+                            p1 m 2 + x PUT 'p1' STO
+                            p1 m 1 - x PUT 'p1' STO
+                            p2 m 1 + GET 1 + 'y' STO
+                            p2 m 1 + y PUT 'p2' STO
+                            p2 m 2 - y PUT 'p2' STO
+                        ELSE                    @ IV.4.iii.a.2
+                            p2 m 1 + 0 PUT 'p2' STO
+                            p2 m 2 - 0 PUT 'p2' STO
+                        END
+                    ELSE                        @ IV.4.iii.b
+                        p1 m 1 + 2 PUT 'p1' STO
+                        p1 m 2 PUT 'p1' STO
+                        p2 m GET 3 - 'y' STO
+                        p2 m y PUT 'p2' STO
+                        p2 m 1 - y PUT 'p2' STO
+                        p3 m 0 PUT 'p3' STO
+                        p3 m 2 - 0 PUT 'p3' STO
+                        p3 m 1 - 3 PUT 'p3' STO
+                        IF p3 m 2 - GET 1 \>= THEN @ IV.4.iii.b.1
+                            p2 m 1 + GET 1 - 'y' STO
+                            p2 m 1 + y PUT 'p2' STO
+                            p2 m 2 - y PUT 'p2' STO
+                        ELSE                        @ IV.4.iii.b.2
+                            p1 m 2 + GET 1 - 'x' STO
+                            p1 m 2 + x PUT 'p1' STO
+                            p1 m 1 - x PUT 'p1' STO
+                            p2 m 1 + 9 PUT 'p2' STO
+                            p2 m 2 - 9 PUT 'p2' STO
+                        END
+                    END
+                END END
+            ELSE IF p1 m 1 - GET c m 1 - GET + 2 ==
+                    p1 m 1 - GET 1 == AND THEN           @ IV.5
+                IF p3 m 1 - GET 9 \=/
+                   p2 m 1 - GET 0 \=/ AND THEN        @ IV.5.i
+                    p2 m GET 1 - 'y' STO
+                    p2 m y PUT 'p2' STO
+                    p2 m 1 - y PUT 'p2' STO
+                    p3 m 1 - GET 1 + 'z' STO
+                    p3 m 1 - z PUT 'p3' STO
+                ELSE IF p3 m 1 - GET 9 \=/
+                        p2 m 1 - GET 0 == AND THEN    @ IV.5.ii
+                    p1 m 0 PUT 'p1' STO
+                    p1 m 1 + 0 PUT 'p1' STO
+                    p2 m 9 PUT 'p2' STO
+                    p2 m 1 - 9 PUT 'p2' STO
+                    p3 m 1 - GET 1 + 'z' STO
+                    p3 m 1 - z PUT 'p3' STO
+                ELSE IF p3 m 1 - GET 9 ==
+                        p3 m 2 - GET 0 \=/ AND THEN   @ IV.5.iii
+                    IF p2 m 2 - GET 9 \=/ THEN            @ IV.5.iii.a
+                        p1 m 1 + 0 PUT 'p1' STO
+                        p1 m 0 PUT 'p1' STO
+                        p2 m 1 + GET 1 + 'y' STO
+                        p2 m 1 + y PUT 'p2' STO
+                        p2 m 2 - y PUT 'p2' STO
+                        p2 m GET 1 + 'y' STO
+                        p2 m y PUT 'p2' STO
+                        p2 m 1 - y PUT 'p2' STO
+                        p3 m GET 1 - 'z' STO
+                        p3 m z PUT 'p3' STO
+                        p3 m 2 - z PUT 'p3' STO
+                        p3 m 1 - 8 PUT 'p3' STO
+                    ELSE IF p2 m 1 - GET 1 > THEN     @ IV.5.iii.b
+                        p1 m 1 + 2 PUT 'p1' STO
+                        p1 m 2 PUT 'p1' STO
+                        p2 m GET 2 - 'y' STO
+                        p2 m y PUT 'p2' STO
+                        p2 m 1 - y PUT 'p2' STO
+                        p2 m 1 + 8 PUT 'p2' STO
+                        p2 m 2 - 8 PUT 'p2' STO
+                        p3 m GET 1 + 'z' STO
+                        p3 m z PUT 'p3' STO
+                        p3 m 2 - z PUT 'p3' STO
+                        p3 m 1 - 1 PUT 'p3' STO
+                    ELSE IF p2 m 1 - GET 1 == THEN    @ IV.5.iii.c
+                        p1 m 1 + 1 PUT 'p1' STO
+                        p1 m 1 PUT 'p1' STO
+                        p2 m 1 + 8 PUT 'p2' STO
+                        p2 m 8 PUT 'p2' STO
+                        p2 m 1 - 8 PUT 'p2' STO
+                        p2 m 2 - 8 PUT 'p2' STO
+                        p3 m GET 1 + 'z' STO
+                        p3 m z PUT 'p3' STO
+                        p3 m 2 - z PUT 'p3' STO
+                        p3 m 1 - 1 PUT 'p3' STO
+                    ELSE                              @ IV.5.iii.d
+                        p1 m 1 + 1 PUT 'p1' STO
+                        p1 m 1 PUT 'p1' STO
+                        p2 m 1 + 8 PUT 'p2' STO
+                        p2 m 9 PUT 'p2' STO
+                        p2 m 1 - 9 PUT 'p2' STO
+                        p2 m 2 - 8 PUT 'p2' STO
+                        p3 m GET 1 + 'z' STO
+                        p3 m z PUT 'p3' STO
+                        p3 m 2 - z PUT 'p3' STO
+                        p3 m 1 - 1 PUT 'p3' STO
+                    END END END
+                ELSE IF p3 m 1 - GET 9 ==
+                        p3 m 2 - GET 0 == AND
+                        p2 m 2 - GET 0 \=/ AND THEN   @ IV.5.iv
+                    p2 m 1 + GET 1 - 'y' STO
+                    p2 m 1 + y PUT 'p2' STO
+                    p2 m 2 - y PUT 'p2' STO
+                    p3 m 1 PUT 'p3' STO
+                    p3 m 1 - 1 PUT 'p3' STO
+                    p3 m 2 - 1 PUT 'p3' STO
+                    IF p2 m 1 - GET 1 > THEN          @ IV.5.iv.a
+                        p1 m 1 + 2 PUT 'p1' STO
+                        p1 m 2 PUT 'p1' STO
+                        p2 m GET 2 - 'y' STO
+                        p2 m y PUT 'p2' STO
+                        p2 m 1 - y PUT 'p2' STO
+                    ELSE IF p2 m 1 - GET 1 == THEN    @ IV.5.iv.b
+                        p1 m 1 + 1 PUT 'p1' STO
+                        p1 m 1 PUT 'p1' STO
+                        p2 m 8 PUT 'p2' STO
+                        p2 m 1 - 8 PUT 'p2' STO
+                    ELSE                              @ IV.5.iv.c
+                        p1 m 1 + 1 PUT 'p1' STO
+                        p1 m 1 PUT 'p1' STO
+                        p2 m 9 PUT 'p2' STO
+                        p2 m 1 - 9 PUT 'p2' STO
+                    END END
+                ELSE                                  @ IV.5.v
+                    p1 m 2 + GET 1 - 'x' STO
+                    p1 m 2 + x PUT 'p1' STO
+                    p1 m 1 - x PUT 'p1' STO
+                    p3 m 1 PUT 'p3' STO
+                    p3 m 1 - 1 PUT 'p3' STO
+                    p3 m 2 - 1 PUT 'p3' STO
+                    IF p2 m 1 - GET 1 > THEN          @ IV.5.v.a
+                        p1 m 1 + 2 PUT 'p1' STO
+                        p1 m 2 PUT 'p1' STO
+                        p2 m 1 + 9 PUT 'p2' STO
+                        p2 m 2 - 9 PUT 'p2' STO
+                        p2 m GET 2 - 'y' STO
+                        p2 m y PUT 'p2' STO
+                        p2 m 1 - y PUT 'p2' STO
+                    ELSE IF p2 m 1 - GET 0 == THEN        @ IV.5.v.b
+                        p1 m 1 + 1 PUT 'p1' STO
+                        p1 m 1 PUT 'p1' STO
+                        p2 m 1 + 9 PUT 'p2' STO
+                        p2 m 2 - 9 PUT 'p2' STO
+                        p2 m 8 PUT 'p2' STO
+                        p2 m 1 - 8 PUT 'p2' STO
+                    ELSE                              @ IV.5.v.c
+                        p1 m 1 + 1 PUT 'p1' STO
+                        p1 m 1 PUT 'p1' STO
+                        p2 m 1 + 9 PUT 'p2' STO
+                        p2 m 2 - 9 PUT 'p2' STO
+                        p2 m 9 PUT 'p2' STO
+                        p2 m 1 - 9 PUT 'p2' STO
+                    END END
+                END END END END
+            ELSE IF p1 m 1 - GET c m 1 - GET + 3 == THEN @ IV.6
+                p2 m GET 1 - 'y' STO
+                p2 m y PUT 'p2' STO
+                p2 m 1 - y PUT 'p2' STO
+                p3 m 1 - 0 PUT 'p3' STO
+            END END END END END
+            p1 NL\->I p2 NL\->I p3 NL\->I
+        \>>
+    \>>
+\>>
+'ALGO4' STO

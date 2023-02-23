@@ -1,0 +1,29 @@
+@ Algorithm applied to 'special' numbers -- in turn calls either
+@ Algorithm-2 or Algorithm-4
+@ number | palindrome-1 --> palindrome-1 | palindrome-2 | palindrome-3
+\<< 1 \-> num p1 mult
+    \<< p1 SIZE 2 / IP \-> m
+        \<< 10 m ^ 10 m 1 - ^ + DUP
+            num SWAP - I\->NL REV \-> s d
+            \<< IF d m 1 - GET 0 \=/ d m GET 0 \=/ AND NOT THEN
+                    'mult' INCR DROP
+                    num s 2 * - I\->NL
+                ELSE
+                    d REV
+                END
+                NTYPE \-> type special d p1 p2 p3
+                \<< d p1 p2 p3
+                    IF p1 SIZE 2 MOD THEN
+                        ALGO4
+                    ELSE IF type 1 1 SUB "A" == THEN
+                        ALGO2
+                    ELSE
+                        ALGO4
+                    END END
+                \>>
+                ROT s mult * + UNROT
+            \>>
+        \>>
+    \>>
+\>>
+'ALGO5' STO
