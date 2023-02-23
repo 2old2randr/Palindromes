@@ -1,0 +1,58 @@
+@ Five digit numbers
+@ num | d --> p1 | p2 | p3
+\<< \-> num d
+    \<< d 1 GET d 2 GET d 3 GET d 4 GET d 5 GET \-> d4 d3 d2 d1 d0
+        \<<
+            IF d4 1 \=/ THEN
+                d NTYPE \-> type special d p1 p2 p3
+                \<<
+                    @ type should be A1 --- apply Algorithm 1
+                    d p1 p2 p3 ALGO1
+                \>>
+            ELSE
+                @ most solutions are of the form 1 d3 x x d3 1
+                10000 d3 1000 * + d3 10 * + 1 + \-> d30d3
+                \<< num d30d3 - \-> m
+                    \<< IF m 201 == THEN
+                            d30d3 100 +
+                            101 0
+                        ELSE IF num 10000 == THEN
+                            9999 1 0
+                        ELSE IF {2 6 12 20 30 42 56 72 90} m POS NOT
+                                num d30d3 > AND
+                        THEN
+                            num d30d3 - PALIN DROP d30d3 UNROT
+                        ELSE IF num d30d3 \<= THEN
+                            10000 d3 1 - 1000 * + 900 + d3 1 - 10 * + 1 +
+                            'd30d3' STO
+                            num d30d3 - PALIN DROP d30d3 UNROT
+                        ELSE
+                            m 4 * 1 + SQRT 1 - 2 / \-> x
+                            \<< IF 10000 d3 1 - 1000 * + 900 + d3 1 -
+                                   100 * + 1 + x 10 * + x + num ==
+                                THEN
+                                    10000 d3 1 - 1000 * + 800 + d3 1 - 10 * + 1 +
+                                    1 x 1 + 10 * 1 +
+                                    x 1 -
+                                ELSE IF d3 0 \=/ AND THEN
+                                    10000 d3 1 - 1000 * + 100 + d3 1 - 10 * + 1 +
+                                    900 x 1 + 10 * + 9 +
+                                    IF x 1 + d3 + 10 < THEN
+                                        x 1 +
+                                    ELSE
+                                        1
+                                    END
+                                ELSE
+                                    9999
+                                    x 1 + 10 * x 1 + +
+                                    1
+                                END END
+                           \>>
+                        END END END END
+                    \>>
+                \>>
+            END
+        \>>
+    \>>
+\>>
+'SML5' STO

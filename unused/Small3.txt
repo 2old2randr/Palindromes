@@ -1,0 +1,37 @@
+@ Three digit numbers
+@ d --> p1 | p2 | p3
+\<< \-> d
+    \<< d 1 GET d 2 GET d 3 GET \-> d2 d1 d0
+        \<<
+            CASE
+                d2 d0 \<= THEN
+                    d2 100 * d1 10 * + d2 +
+                    d0 d2 -
+                    0
+                END
+                d2 d0 1 + \>= d1 0 \=/ AND THEN
+                    d2 100 * d1 1 - 10 * + d2 +
+                    10 d0 + d2 -
+                    0
+                END
+                d2 d0 1 + \>= d1 0 == AND d2 d0 - 1 - 10 MOD AND THEN
+                    d2 1 - 100 * 90 + d2 1 - +
+                    10 d0 + d2 - 1 +
+                    0
+                END
+                @ d2 >= d0+1, d1==0, D(d2-d0-1)==0
+                CASE
+                    d2 3 \>= THEN
+                        d2 2 - 100 * 90 + d2 2 - +
+                        111 0
+                    END
+                    @ d2==2 (201)
+                    d2 2 == THEN 101 99 1 END
+                    @ d2==1 (100)
+                    99 1 0
+                END
+            END
+        \>>
+    \>>
+\>>
+'SML3' STO

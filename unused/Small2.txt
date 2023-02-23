@@ -1,0 +1,24 @@
+@ Two digit numbers
+@ d --> p1 | p2 | p3
+\<< \-> d
+    \<< d 1 GET d 2 GET \-> d1 d0
+        \<< CASE
+                d1 d0 \<= THEN
+                    d1 10 * d1 +
+                    d0 d1 -
+                    0
+                END
+                d1 d0 1 + > THEN
+                    d1 1 - 10 * d1 + 1 -
+                    10 d0 + d1 - 1 +
+                    0
+                END
+                @ d1 == d0+1 & d0 >= 1
+                d0 10 * d0 +
+                9
+                1
+            END
+        \>>
+    \>>
+\>>
+'SML2' STO

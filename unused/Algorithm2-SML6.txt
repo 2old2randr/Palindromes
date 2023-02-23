@@ -1,0 +1,154 @@
+@ Algorithm applied to normal numbers of type 'A' with an even number of digits
+@ Inputs on stack are lists of digits of the number (lsb first)
+@ and starting guesses for the palindromes
+@ digits | p1 | p2 | p3 --> palindrome-1 | palindrome-2 | palindrome-3
+\<< \-> d p1 p2 p3
+    \<< p1 SIZE ZEROLST
+        p1 SIZE 2 / IP
+        p1 SIZE
+        p2 SIZE
+        p3 SIZE
+        p1 1 GET
+        p2 1 GET
+        p3 1 GET
+        0 0 0
+        \-> c m l1 l2 l3 x y z d1 d2 ci
+        \<< x y + z + 10 / IP 'ci' STO
+            c 1 ci PUT 'c' STO
+            d 2 m * 2 - GET 'd1' STO
+            d 2 m * 1 - GET 'd2' STO
+            IF z d1 < THEN
+                d2 y - 10 MOD 'x' STO
+            ELSE
+                d2 y - 1 - 10 MOD 'x' STO
+            END
+            p1 2 x PUT 'p1' STO
+            p1 l1 1 - x PUT 'p1' STO
+            d1 z - 1 - 10 MOD 'y' STO
+            p2 2 y PUT 'p2' STO
+            p2 l2 1 - y PUT 'p2' STO
+            d 2 GET x - y - ci - 10 MOD 'z' STO
+            p3 2 z PUT 'p3' STO
+            p3 l3 1 - z PUT 'p3' STO
+            x y + z + ci + d 2 GET - 10 / IP 'ci' STO
+            c 2 ci PUT 'c' STO
+            IF m 3 > THEN
+                3 m 1 -
+                FOR i
+                    d 2 m * i - GET 'd1' STO
+                    d i GET 'd2' STO
+                    IF z d1 < THEN
+                        1 'x' STO
+                    ELSE
+                        0 'x' STO
+                    END
+                    p1 i x PUT 'p1' STO
+                    p1 l1 i - 1 + x PUT 'p1' STO
+                    d1 z - 1 - 10 MOD 'y' STO
+                    p2 i y PUT 'p2' STO
+                    p2 l2 i - 1 + y PUT 'p2' STO
+                    d2 x - y - ci - 10 MOD 'z' STO
+                    p3 i z PUT 'p3' STO
+                    p3 l3 i - 1 + z PUT 'p3' STO
+                    x y + z + ci + d2 - 10 / IP 'ci' STO
+                    c i ci PUT 'c' STO
+                NEXT
+            END
+            p1 m 0 PUT 'p1' STO
+            d m GET z - ci - 10 MOD 'y' STO
+            p2 m y PUT 'p2' STO
+            @ Adjust if the carry in m is 0 or 2
+            y z + ci + 10 / IP 'ci' STO
+            IF ci 0 == THEN
+                IF y 0 \=/ THEN                   @ II.2.i
+                    p1 m 1 PUT 'p1' STO
+                    p1 m 1 + 1 PUT 'p1' STO
+                    p2 m y 1 - PUT 'p2' STO
+                ELSE
+                    p2 m 1 - GET 'y' STO
+                    IF y 0 \=/ THEN                  @ II.2.ii.a
+                        p1 m 1 PUT 'p1' STO
+                        p1 m 1 + 1 PUT 'p1' STO
+                        'y' DECR DROP
+                        p2 m 1 - y PUT 'p2' STO
+                        p2 m 8 PUT 'p2' STO
+                        p2 m 1 + y PUT 'p2' STO
+                        p3 m 1 - GET 1 + 'z' STO
+                        p3 m z PUT 'p3' STO
+                        p3 m 1 - z PUT 'p3' STO
+                    ELSE
+                        p3 m 1 - 'z' STO
+                        IF z 0 \=/ THEN               @ II.2.ii.b
+                            p2 m 1 + 1 PUT 'p2' STO
+                            p2 m 1 PUT 'p2' STO
+                            p2 m 1 - 1 PUT 'p2' STO
+                            'z' DECR DROP
+                            p3 m z PUT 'p3' STO
+                            p3 m 1 - z PUT 'p3' STO
+                        ELSE                          @ II.2.ii.c
+                            IF d SIZE 6 > THEN
+                                p1 m 1 - GET 1 - 'x' STO
+                                p1 m 1 - x PUT 'p1' STO
+                                p1 m 1 PUT 'p1' STO
+                                p1 m 1 + 1 PUT 'p1' STO
+                                p1 m 2 + x PUT 'p1' STO
+                                p2 m 1 - 9 PUT 'p2' STO
+                                p2 m 6 PUT 'p2' STO
+                                p2 m 1 + 9 PUT 'p2' STO
+                                p3 m 2 + 0 PUT 'p3' STO
+                                p3 m 2 PUT 'p3' STO
+                                p3 m 1 - 2 PUT 'p3' STO
+                            ELSE                    @ Called from SML6
+                                IF p1 2 GET 0 \=/ THEN
+                                    p1 2 GET 1 - 'x' STO
+                                    p1 2 x PUT 'p1' STO
+                                    p1 5 x PUT 'p1' STO
+                                    p1 3 9 PUT 'p1' STO
+                                    p1 4 9 PUT 'p1' STO
+                                    p2 2 1 PUT 'p2' STO
+                                    p2 3 1 PUT 'p2' STO
+                                    p2 4 1 PUT 'p2' STO
+                                    p3 2 0 PUT 'p3' STO
+                                    p3 3 0 PUT 'p3' STO
+                                ELSE IF p1 1 GET 1 == THEN
+                                    { 2 0 0 0 0 2 } 'p1' STO
+                                    { 1 1 } 'p2' STO
+                                    { 6 } 'p3' STO
+                                ELSE IF p2 1 GET 9 \=/ THEN
+                                    p1 1 GET 1 - 'x' STO
+                                    p1 1 x PUT 'p1' STO
+                                    p1 6 x PUT 'p1' STO
+                                    p1 2 9 PUT 'p1' STO
+                                    p1 5 9 PUT 'p1' STO
+                                    p2 1 GET 1 + 'y' STO
+                                    p2 1 y PUT 'p2' STO
+                                    p2 5 y PUT 'p2' STO
+                                    p2 3 8 PUT 'p2' STO
+                                    p3 2 1 PUT 'p3' STO
+                                    p3 3 1 PUT 'p3' STO
+                                ELSE
+                                    p1 1 GET 1 + 'x' STO
+                                    p1 1 x PUT 'p1' STO
+                                    p1 6 x PUT 'p1' STO
+                                    { 1 1 } 'p2' STO
+                                    { 6 } 'p3' STO
+                                END END END
+                            END
+                        END
+                    END
+                END
+            ELSE IF ci 2 == THEN                     @ II.3
+                p1 m 1 + 1 PUT 'p1' STO
+                p1 m 1 PUT 'p1' STO
+                p2 m 1 - GET 1 - 'y' STO
+                p2 m 1 - y PUT
+                p2 m 9 PUT
+                p2 m 1 + y PUT
+                p3 m 0 PUT
+                p3 m 1 - 0 PUT                
+            END END
+            p1 NL\->I p2 NL\->I p3 NL\->I
+        \>>
+    \>>
+\>>
+'ALGO2' STO
