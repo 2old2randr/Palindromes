@@ -6,6 +6,9 @@
 \<< DUP I\->NL DUP SIZE \-> num d n
     \<< IF n 7 < THEN
             num SMALL
+            IF DUP TYPE 5 == THEN
+                LIST\-> DROP
+            END
         ELSE
             d NTYPE \-> type special d p1 p2 p3
             \<< IF { "A1" "A2" "A3" "A4" } type POS

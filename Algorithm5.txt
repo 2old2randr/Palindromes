@@ -5,7 +5,7 @@
     \<< p1 SIZE 2 / IP \-> m
         \<< 10 m ^ 10 m 1 - ^ + DUP
             num SWAP - I\->NL REV \-> s d
-            \<< IF d m 1 - GET 0 \=/ d m GET 0 \=/ AND NOT THEN
+            \<< IF d m 1 + GET 0 \=/ d m GET 0 \=/ AND NOT THEN
                     'mult' INCR DROP
                     num s 2 * - I\->NL
                 ELSE

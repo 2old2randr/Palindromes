@@ -77,7 +77,7 @@
                         p3 m z PUT 'p3' STO
                         p3 m 1 - z PUT 'p3' STO
                     ELSE
-                        p3 m 1 - 'z' STO
+                        p3 m 1 - GET 'z' STO
                         IF z 0 \=/ THEN               @ II.2.ii.b
                             p2 m 1 + 1 PUT 'p2' STO
                             p2 m 1 PUT 'p2' STO
