@@ -8,3 +8,5 @@ can be found at https://www.hpcalc.org/details/7971.
 
 For numbers with less than seven digits, a brute force search with backtracking is used. This
 was originally written by "peruna" (see https://www.hpmuseum.org/forum/thread-19563.html).
+
+The original paper can be found at https://arxiv.org/abs/1602.06208
