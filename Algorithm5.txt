@@ -13,13 +13,11 @@
                 END
                 NTYPE \-> type special d p1 p2 p3
                 \<< d p1 p2 p3
-                    IF p1 SIZE 2 MOD THEN
+                    CASE
+                        p1 SIZE 2 MOD THEN ALGO4 END
+                        type 1 1 SUB "A" == THEN ALGO2 END
                         ALGO4
-                    ELSE IF type 1 1 SUB "A" == THEN
-                        ALGO2
-                    ELSE
-                        ALGO4
-                    END END
+                    END
                 \>>
                 ROT s mult * + UNROT
             \>>

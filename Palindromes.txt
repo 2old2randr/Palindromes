@@ -7,35 +7,27 @@
     \<< IF n 7 < THEN
             num SMALL
             IF DUP TYPE 5 == THEN
-                LIST\-> DROP
+                LIST\-> DROP @ make output consistently 3 nums on stack
             END
         ELSE
             d NTYPE \-> type special d p1 p2 p3
-            \<< IF { "A1" "A2" "A3" "A4" } type POS
+            \<< IF special THEN
+                    num p1 ALGO5
+                ELSE IF { "A1" "A2" "A3" "A4" } type POS
                    n 2 MOD AND
                    { "A5" "A6" } type POS
                    n 2 MOD NOT AND OR
-                   special NOT AND
                 THEN
                     d p1 p2 p3 ALGO1
-                ELSE IF { "A5" "A6" } type POS
-                        n 2 MOD AND
-                        { "A1" "A2" "A3" "A4" } type POS
-                        n 2 MOD NOT AND OR
-                        special NOT AND
-                THEN
+                ELSE IF type 1 1 SUB "A" == THEN
+                    @ type A1-A4 and even digits or A5-A6 with odd
                     d p1 p2 p3 ALGO2
-                ELSE IF { "B1" "B2" "B3" "B4" "B5" "B6" "B7" } type POS
-                        n 2 MOD AND
-                        special NOT AND
-                THEN
+                ELSE IF n 2 MOD THEN
+                    @ type B with odd number of digits
                     d p1 p2 p3 ALGO3
-                ELSE IF special NOT THEN
-                    @ Type B - normal number with odd number of digits
-                    d p1 p2 p3 ALGO4
                 ELSE
-                    @ Special numbers
-                    num p1 ALGO5
+                    @ Type B with even number of digits
+                    d p1 p2 p3 ALGO4
                 END END END END
             \>>
         END
