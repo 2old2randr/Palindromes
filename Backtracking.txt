@@ -19,7 +19,7 @@
         \<< DUP P? EVAL { 0 0 3 \->LIST } { \->P EVAL U EVAL } IFTE
         \>> 'P3' STO
         \<< DUP2 - P2 DUP TYPE { + NIP } { DROP2 P\|v U } IFTE \>> 'U' STO
-        num P3 EVAL LIST\-> DROP
+        num P3 EVAL
         { P? LP SP \->P P\|v P2 T P3 U } PURGE
     \>>
 \>>
