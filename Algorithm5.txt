@@ -2,7 +2,7 @@
 @ Algorithm-2 or Algorithm-4
 @ number | palindrome-1 --> palindrome-1 | palindrome-2 | palindrome-3
 \<< 1 \-> num p1 mult
-    \<< p1 SIZE 2 / IP \-> m
+    \<< p1 SIZE 2 IDIV2 DROP \-> m
         \<< 10 m ^ 10 m 1 - ^ + DUP
             num SWAP - I\->NL REV \-> s d
             \<< IF d m 1 + GET 0 \=/ d m GET 0 \=/ AND NOT THEN

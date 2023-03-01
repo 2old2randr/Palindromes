@@ -117,7 +117,7 @@
                         p3 m 1 - 3 PUT 'p3' STO
                     END END
                 ELSE IF p3 m 1 - GET 0 ==            @ IV.2.iii
-                        p2 m 2 - GET - == AND THEN
+                        p2 m 2 - GET 0 == AND THEN
                     @ common to .a, .b, .c
                     p1 m 2 + GET 1 - 'x' STO
                     p1 m 2 + x PUT 'p1' STO
