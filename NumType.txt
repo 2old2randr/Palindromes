@@ -55,7 +55,7 @@
                     d3 4 \>= AND
                     dn d3 - 10 MOD AND
             THEN "B1"
-                 p1 1 1 PUT p1 n 1
+                 p1 1 1 PUT p1 n 1 PUT
                  d2 DUP p1 2 ROT PUT SWAP p1 n 1 - ROT PUT ADD ADD ADD 'p1' STO
                  d3 1 - DUP p2 3 ROT PUT SWAP p2 n ROT PUT ADD 'p2' STO
                  dn d3 - 10 MOD DUP

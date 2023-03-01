@@ -12,11 +12,39 @@
                     d REV
                 END
                 NTYPE \-> type special d p1 p2 p3
-                \<< d p1 p2 p3
-                    CASE
-                        p1 SIZE 2 MOD THEN ALGO4 END
-                        type 1 1 SUB "A" == THEN ALGO2 END
-                        ALGO4
+                \<< CASE
+                        p1 SIZE 2 MOD THEN
+                            @ We need to change p1 p2 p3 as if
+                            @ the number was classified as B1/B2
+                            d REV DUP SIZE \-> d n
+                            \<< d 2 GET d 3 GET d n GET
+                                n ZEROLST 3 NDUPN DROP
+                                \-> d2 d3 dn p1 p2 p3
+                                \<< IF dn d3 - 10 MOD THEN
+                                        @ Use B1 setup
+                                        p1 1 1 PUT p1 n 1 PUT
+                                        d2 DUP p1 2 ROT PUT SWAP p1 n 1 - ROT PUT ADD ADD ADD 'p1' STO
+                                        d3 1 - DUP p2 3 ROT PUT SWAP p2 n ROT PUT ADD 'p2' STO
+                                        dn d3 - 10 MOD DUP
+                                        p3 4 ROT PUT SWAP p3 n ROT PUT ADD 'p3' STO
+                                    ELSE
+                                        @ Use B2 setup
+                                        p1 1 1 PUT p1 n 1 PUT
+                                        d2 DUP p1 2 ROT PUT SWAP p1 n 1 - ROT PUT ADD ADD ADD 'p1' STO
+                                        d3 2 - DUP p2 3 ROT PUT SWAP p2 n ROT PUT ADD 'p2' STO
+                                        p3 4 1 PUT p3 n 1 PUT ADD 'p3' STO
+                                    END
+                                    p1 CMPLST 'p1' STO
+                                    p2 CMPLST 'p2' STO
+                                    p3 CMPLST 'p3' STO
+                                    d REV p1 p2 p3 ALGO4
+                                \>>
+                            \>>
+                        END
+                        type 1 1 SUB "A" == THEN
+                            d p1 p2 p3 ALGO2
+                        END
+                        d p1 p2 p3 ALGO4
                     END
                 \>>
                 ROT s mult * + UNROT
