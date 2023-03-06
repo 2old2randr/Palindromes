@@ -1,58 +1,72 @@
 @ Five digit numbers
-@ num | d --> p1 | p2 | p3
+@ num d --> p1 | p2 | p3
 \<< \-> num d
     \<< d 1 GET d 2 GET d 3 GET d 4 GET d 5 GET \-> d4 d3 d2 d1 d0
         \<<
             IF d4 1 \=/ THEN
                 d NTYPE \-> type special d p1 p2 p3
                 \<<
-                    @ type should be A1 --- apply Algorithm 1
+                    @ type should be A - apply Algorithm 1
                     d p1 p2 p3 ALGO1
                 \>>
             ELSE
                 @ most solutions are of the form 1 d3 x x d3 1
                 10000 d3 1000 * + d3 10 * + 1 + \-> d30d3
-                \<< num d30d3 - \-> m
-                    \<< IF m 201 == THEN
-                            d30d3 100 +
-                            101 0
-                        ELSE IF num 10000 == THEN
-                            9999 1 0
-                        ELSE IF {2 6 12 20 30 42 56 72 90} m POS NOT
-                                num d30d3 > AND
-                        THEN
-                            num d30d3 - PALIN DROP d30d3 UNROT
-                        ELSE IF num d30d3 \<= THEN
-                            10000 d3 1 - 1000 * + 900 + d3 1 - 10 * + 1 +
-                            'd30d3' STO
-                            num d30d3 - PALIN DROP d30d3 UNROT
-                        ELSE
-                            m 4 * 1 + SQRT 1 - 2 / \-> x
-                            \<< IF 10000 d3 1 - 1000 * + 900 + d3 1 -
-                                   100 * + 1 + x 10 * + x + num ==
-                                THEN
+                \<< num d30d3 - DUP I\->NL \-> m md
+                    \<< CASE
+                            m 201 == THEN d30d3 100 + 101 0 END    @ ii
+                            num 10000 == THEN 9999 1 0 END         @ v
+                            m 10 < THEN d30d3 m 0 END
+                            m 10 == THEN d30d3 9 1 END
+                            md SIZE 2 ==
+                              md 1 GET md 2 GET 1 + \=/ AND
+                              md SIZE 2 \=/ OR THEN                @ i
+                                @ m is the sum of two palindromes
+                                m PALIN DROP d30d3 UNROT
+                            END
+                            md SIZE 2 ==
+                              md 1 GET md 2 GET 1 + == AND
+                              d3 0 \=/ AND THEN                    @ iii
+                                10000 d3 1 - 1000 * + 100 + d3 1 - 10 * + 1 +
+                                900 md 2 GET 1 + 10 * + 9 +
+                                md 2 GET 1 +
+                            END
+                            md SIZE 2 ==
+                              md 1 GET md 2 GET 1 + == AND
+                              d3 0 == AND THEN                     @ iv
+                                9999
+                                md 2 GET 1 + 10 * md 2 GET 1 + +
+                                1
+                            END
+                          @ p1 is of the form 1 d3-1 9 d3-1 1
+                          10000 d3 1 - 1000 * + 900 + d3 1 - 10 * + 1 +
+                          \-> d39d3
+                          \<<
+                              num d39d3 - 'm' STO
+                              m I\->NL 'md' STO
+                              IF md SIZE 2 < THEN
+                                  d39d3 m 0
+                              ELSE
+                                  CASE
+                                      m 10 == THEN d39d3 9 1 END
+                                      m 201 \=/                    @ vi
+                                        md 1 GET md 2 GET 1 + \=/ THEN
+                                          m PALIN DROP d39d3 UNROT
+                                      END
+                                    @ vii
                                     10000 d3 1 - 1000 * + 800 + d3 1 - 10 * + 1 +
-                                    1 x 1 + 10 * 1 +
-                                    x 1 -
-                                ELSE IF d3 0 \=/ AND THEN
-                                    10000 d3 1 - 1000 * + 100 + d3 1 - 10 * + 1 +
-                                    900 x 1 + 10 * + 9 +
-                                    IF x 1 + d3 + 10 < THEN
-                                        x 1 +
-                                    ELSE
-                                        1
-                                    END
-                                ELSE
-                                    9999
-                                    x 1 + 10 * x 1 + +
-                                    1
-                                END END
-                           \>>
-                        END END END END
+                                    100 md 2 GET 1 + 10 * + 1 +
+                                    md 2 GET 1 -
+                                  END
+                              END
+                          \>>
+                        END
                     \>>
                 \>>
             END
         \>>
     \>>
+    @ Convert numbers on stack to exact integers
+    R\->I ROT R\->I ROT R\->I ROT
 \>>
 'SML5' STO

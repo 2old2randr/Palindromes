@@ -1,6 +1,6 @@
 @ Three digit numbers
-@ d --> p1 | p2 | p3
-\<< \-> d
+@ num d --> p1 | p2 | p3
+\<< \-> num d
     \<< d 1 GET d 2 GET d 3 GET \-> d2 d1 d0
         \<<
             CASE
@@ -33,5 +33,7 @@
             END
         \>>
     \>>
+    @ Convert numbers on stack to exact integers
+    R\->I ROT R\->I ROT R\->I ROT
 \>>
 'SML3' STO
