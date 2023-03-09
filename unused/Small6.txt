@@ -90,7 +90,7 @@
                                 END
                             END
                           @ iii.d
-                          d3 1 - 10 MOD 1 + d3 - 'c' STO        @ c4 
+                          d3 1 - 10 MOD 1 + d3 - 10 / IP 'c' STO        @ c4 
                           1 c - 'x' STO
                           100001 x 10010 * + 'p1' STO
                           d4 1 - 10001 * 'p2' STO

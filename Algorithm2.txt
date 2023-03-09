@@ -103,11 +103,11 @@
                 p1 m 1 + 1 PUT 'p1' STO
                 p1 m     1 PUT 'p1' STO
                 p2 m 1 - GET 1 - 'y' STO
-                p2 m 1 - y PUT
-                p2 m 1 + y PUT
-                p2 m     9 PUT
-                p3 m     0 PUT
-                p3 m 1 - 0 PUT                
+                p2 m 1 - y PUT 'p2' STO
+                p2 m 1 + y PUT 'p2' STO
+                p2 m     8 PUT 'p2' STO
+                p3 m     0 PUT 'p3' STO
+                p3 m 1 - 0 PUT 'p3' STO
             END END
             p1 NL\->I p2 NL\->I p3 NL\->I
         \>>
