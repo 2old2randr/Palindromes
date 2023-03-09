@@ -130,11 +130,12 @@
                                 IF c2 1 > THEN
                                     1 'mu' STO
                                     1 'c2' STO
+                                    9 'x' STO
                                 END
                                 x y + d3 - 10 / IP 'c3' STO
                                 100001 3 c3 - 10010 * + x mu - 1100 * + 'p1' STO
                                 60006 y c2 - mu + 1010 * +
-                                    d2 x - 1 - c1 - mu + 100 * + 'p2' STO
+                                    d2 x - 1 - c1 - mu + 10 MOD 100 * + 'p2' STO
                                 d1 3 - y - 10 MOD c2 + mu - c3 + 10 *
                                     101 + 'p3' STO
                             \>>
