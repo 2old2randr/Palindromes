@@ -85,17 +85,54 @@
                             p3 m     z PUT 'p3' STO
                             p3 m 1 - z PUT 'p3' STO
                         ELSE                          @ II.2.ii.c
-                            p1 m 1 - GET 1 - 'x' STO
-                            p1 m 1 - x PUT 'p1' STO
-                            p1 m 2 + x PUT 'p1' STO
-                            p1 m     1 PUT 'p1' STO
-                            p1 m 1 + 1 PUT 'p1' STO
-                            p2 m 1 - 9 PUT 'p2' STO
-                            p2 m     6 PUT 'p2' STO
-                            p2 m 1 + 9 PUT 'p2' STO
-                            p3 m 2 + 0 PUT 'p3' STO
-                            p3 m     2 PUT 'p3' STO
-                            p3 m 1 - 2 PUT 'p3' STO
+                            IF p3 2 GET 0 \=/ THEN
+                                p1 m 1 - GET 1 - 'x' STO
+                                p1 m 1 - x PUT 'p1' STO
+                                p1 m 2 + x PUT 'p1' STO
+                                p1 m     1 PUT 'p1' STO
+                                p1 m 1 + 1 PUT 'p1' STO
+                                p2 m 1 - 9 PUT 'p2' STO
+                                p2 m     6 PUT 'p2' STO
+                                p2 m 1 + 9 PUT 'p2' STO
+                                p3 m 2 + 0 PUT 'p3' STO
+                                p3 m     2 PUT 'p3' STO
+                                p3 m 1 - 2 PUT 'p3' STO
+                            ELSE                    @ Called from SML6
+                                IF p1 2 GET 0 \=/ THEN
+                                    p1 2 GET 1 - 'x' STO
+                                    p1 2 x PUT 'p1' STO
+                                    p1 5 x PUT 'p1' STO
+                                    p1 3 9 PUT 'p1' STO
+                                    p1 4 9 PUT 'p1' STO
+                                    p2 2 1 PUT 'p2' STO
+                                    p2 3 1 PUT 'p2' STO
+                                    p2 4 1 PUT 'p2' STO
+                                    p3 2 0 PUT 'p3' STO
+                                    p3 3 0 PUT 'p3' STO
+                                ELSE IF p1 1 GET 1 == THEN
+                                    { 2 0 0 0 0 2 } 'p1' STO
+                                    { 1 1 } 'p2' STO
+                                    { 6 } 'p3' STO
+                                ELSE IF p2 1 GET 9 \=/ THEN
+                                    p1 1 GET 1 - 'x' STO
+                                    p1 1 x PUT 'p1' STO
+                                    p1 6 x PUT 'p1' STO
+                                    p1 2 9 PUT 'p1' STO
+                                    p1 5 9 PUT 'p1' STO
+                                    p2 1 GET 1 + 'y' STO
+                                    p2 1 y PUT 'p2' STO
+                                    p2 5 y PUT 'p2' STO
+                                    p2 3 8 PUT 'p2' STO
+                                    p3 2 1 PUT 'p3' STO
+                                    p3 3 1 PUT 'p3' STO
+                                ELSE
+                                    p1 1 GET 1 + 'x' STO
+                                    p1 1 x PUT 'p1' STO
+                                    p1 6 x PUT 'p1' STO
+                                    { 1 1 } 'p2' STO
+                                    { 6 } 'p3' STO
+                                END END END
+                            END
                         END
                     END
                 END
