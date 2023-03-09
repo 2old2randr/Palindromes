@@ -1,128 +1,266 @@
-@ Six digit numbers
-@ d --> p1 | p2 | p3
-\<< \-> d
+\<< \-> num d
     \<< IF d 1 GET 1 \=/ THEN
-            NTYPE d \-> type special d p1 p2 p3
+            d NTYPE \-> ty spl d p1 p2 p3
             \<< d p1 p2 p3 ALGO2 \>>
         ELSE
-            d REVLIST
-            5 ZEROLIST
-            4 ZEROLIST
-            3 ZEROLIST
-            d 1 GET d 5 GET - 1 + 10 MOD
-            d 1 GET d 5 GET - 2 + 10 MOD
-            0 0
-            \-> d p1 p2 p3 x y z ci
-            \<< IF x y AND THEN                          @ i
-                    p3 1 x PUT 'p3' STO
-                    p3 3 x PUT 'p3' STO
-                    p1 1 9 PUT 'p1' STO
-                    p1 2 9 PUT 'p1' STO
-                    p1 4 9 PUT 'p1' STO
-                    p1 5 9 PUT 'p1' STO
-                    d 5 GET 'y' STO
-                    p2 1 y PUT 'p2' STO
-                    p2 5 y PUT 'p2' STO
-                    9 y + x + 10 / IP 'ci' STO
-                    d 4 GET 'y' STO
-                    p2 2 y PUT 'p2' STO
-                    p2 4 y PUT 'p2' STO
-                    d 2 GET 9 - y - ci - 10 MOD 'z' STO
-                    p3 2 z PUT 'p3' STO
-                ELSE IF y 0 == d GET 3 0 \=/ AND THEN    @ ii
-                    p1 1 9 PUT 'p1' STO
-                    p1 5 9 PUT 'p1' STO
-                    d 5 GET 'y' STO
-                    p2 1 y PUT 'p2' STO
-                    p2 5 y PUT 'p2' STO
-                    p3 1 9 PUT 'p3' STO
-                    p3 3 9 PUT 'p3' STO
-                    9 y + 9 + 10 / IP 'ci' STO
-                    p1 2 9 PUT 'p1' STO
-                    p1 4 9 PUT 'p1' STO
-                    d 4 GET 'y' STO
-                    p2 2 y PUT 'p2' STO
-                    p2 4 y PUT 'p2' STO
-                    d 2 GET 9 - y - ci - 10 MOD 'z' STO
-                    p3 2 z PUT 'p3' STO
-                    9 y + z + ci + 10 / IP 'ci' STO
-                    10 ci - z - 'x' STO
-                    p1 3 x PUT 'p1' STO
-                    p2 3 d 3 GET PUT 'p2' STO
-                ELSE IF y 0 == THEN                      @ iii
-                    IF d 5 GET 2 < THEN                 @ iii.a/b
-                        IF d 5 GET 0 == THEN
-                            p1 1 8 PUT 'p1' STO
-                            p1 5 8 PUT 'p1' STO
+            d 2 GET d 3 GET d 4 GET d 5 GET d 6 GET
+            \-> d4 d3 d2 d1 d0
+            \<< d0 d4 - 1 + 10 MOD
+                d0 d4 - 2 + 10 MOD
+                0 0 0 0 0 0 0
+                \-> m1 m2 p1 p2 p3 x y z c
+                \<< IF m1 0 \=/ m2 0 \=/ AND THEN       @ i
+                        @ x1+y1 = g+d4-1; x2+y2=g+d3-1
+                        99099 'p1' STO
+                        d4 10001 * d3 1010 * + 'p2' STO
+                        m1 101 * 'p3' STO
+                        9 d4 + m1 + 10 / IP 'c' STO
+                        @ z2=D(d1-x2-y2-c1)
+                        d1 9 - d3 - c - 10 MOD 'z' STO
+                        z 10 * p3 + 'p3' STO
+                        @ x3+y3=g+d2-c2-z1
+                        c 9 + d3 + z + 10 / IP 'c' STO
+                        10 d2 + c - m1 - 'x' STO
+                        IF x 9 > THEN
+                            900 p1 + 'p1' STO
+                            x 9 - 100 * p2 + 'p2' STO
                         ELSE
-                            p1 1 9 PUT 'p1' STO
-                            p1 5 9 PUT 'p1' STO
+                            x 100 * p1 + 'p1' STO
                         END
-                        p2 1 1 PUT 'p2' STO
-                        p2 5 1 PUT 'p2' STO
-                        @ p3 is a 4 digit number
-                        { 9 0 0 9 } 'p3' STO
-                        p1 2 1 PUT 'p1' STO
-                        p1 4 1 PUT 'p1' STO
-                        d 4 GET 1 - 'y' PUT
-                        p2 2 y PUT 'p2' STO
-                        p2 4 y PUT 'p2' STO
-                        d 2 GET d 4 GET - 1 - 10 MOD 'z' STO
-                        p3 2 z PUT 'p3' STO
-                        p3 3 z PUT 'p3' STO
-                        d 4 GET z + 1 + 10 / IP 'ci' STO
-                        p1 3 0 PUT 'p1' STO
-                        10 ci - z - 'y' STO
-                        p2 3 y PUT 'p2' STO
-                    ELSE IF d 5 GET 2 == THEN            @ iii.c
-                        p1 1 9 PUT 'p1' STO
-                        p1 5 9 PUT 'p1' STO
-                        p2 1 2 PUT 'p2' STO                        
-                        p2 5 2 PUT 'p2' STO                        
-                        @ p3 is a 4 digit number
-                        { 9 0 0 9 } 'p3' STO
-                        p1 2 0 PUT 'p1' STO
-                        p1 4 0 PUT 'p1' STO
-                        d 4 GET 'y' STO
-                        p2 2 y PUT 'p2' STO
-                        p2 4 y PUT 'p2' STO
-                        d 2 GET d 4 GET - 2 - 10 MOD 'z' STO
-                        p3 2 z PUT 'p3' STO
-                        p3 3 z PUT 'p3' STO
-                        d 4 GET z + 2 + 10 / IP 'ci' STO
-                        IF ci 2 == THEN
-                            @ special case
-                            { 1 2 8 8 2 1 } 'p1' STO
-                            { 1 7 1 } 'p2' STO
-                            { 8 } 'p3' STO
+                    ELSE IF m2 0 == d2 0 \=/ AND THEN   @ ii
+                        99099 'p1' STO
+                        d4 10001 * d3 1010 * + 'p2' STO
+                        909 'p3' STO
+                        9 d4 + 9 + 10 / IP 'c' STO
+                        d1 9 - d3 - c - 10 MOD 'z' STO
+                        z 10 * p3 + 'p3' STO
+                        @ x3+y3=g+d2-c2-z1
+                        c 9 + d3 + z + 10 / IP 'c' STO
+                        10 d2 + c - 9 - 'x' STO
+                        IF x 9 > THEN
+                            900 p1 + 'p1' STO
+                            x 9 - 100 * p2 + 'p2' STO
                         ELSE
-                            p1 3 0 PUT 'p1' STO
-                            10 ci - z - 10 MOD 'y' STO
-                            p2 3 y PUT 'p2' STO
+                            x 100 * p1 + 'p1' STO
                         END
-                    ELSE                                 @ iii.d
-                        d 4 GET 1 - 10 MOD 'x' STO
-                        x 1 + d 4 GET - 10 / IP 'y' STO
-                        d 2 GET d 4 GET - 1 - y + 10 MOD 'z' STO
-                        2 y - x + z + d 2 GET - 10 / IP 'ci' STO
-                        1 1 ci - 0 0 1 ci - 1 6 \->LIST 'p1' STO
-                        d 5 GET 1 - x 2 ci - x 4 PICK 5 \->LIST 'p2' STO
-                        8 z 8 3 \->LIST 'p3' STO
-                    END END END
-                ELSE IF x 0 == d 4 GET 0 \=/ AND THEN    @ iv
-                    IF d 5 GET 9 \=/ THEN                @ iv.a
-                    ELSE                                 @ iv.b
-                    END
-                ELSE                                     @ v
-                    IF d 5 GET 0 == THEN                 @ v.a
-                    ELSE IF d 5 GET 1 == THEN            @ v.b
-                    ELSE IF d 5 GET 2 == THEN            @ v.c
-                    ELSE IF d 5 GET 3 == THEN            @ v.d
-                    ELSE                                 @ v.e
-                    END
-                END END END END
+                    ELSE IF m2 0 == d2 0 == AND THEN    @ iii
+                        CASE
+                            d4 1 \<= THEN                @ iii.a
+                                IF d4 0 == THEN
+                                    80008 'p1' STO
+                                ELSE
+                                    90009 'p1' STO
+                                END
+                                10001 d3 1010 * + 'p2' STO
+                                9009 'p3' STO
+                                @ z2=D(d1-x2-y2-c1)
+                                d1 d3 - 1 - 10 MOD 'z' STO
+                                z 100 * z 10 * + p3 + 'p3' STO
+                                @ x3+y3=g-c2-z2
+                                1 d3 + z + 10 / IP 'c' STO
+                                10 c - z - 'x' STO
+                                IF x 9 > THEN
+                                    900 p1 + 'p1' STO
+                                    x 9 - 100 * p2 + 'p2' STO
+                                ELSE
+                                    x 100 * p1 + 'p1' STO
+                                END
+                            END
+                            d4 2 == THEN                @ iii.c
+                                90009 'p1' STO
+                                20002 d3 1010 * + 'p2' STO
+                                9009 'p3' STO
+                                @ c1==2 by definition
+                                d1 d3 - 2 - 10 MOD 'z' STO
+                                z 110 * p3 + 'p3' STO
+                                @ x3+y3=g-c2-z2
+                                2 d3 + z + 10 / IP 'c' STO
+                                IF c 2 \=/ THEN
+                                    10 c - z - 'x' STO
+                                    IF x 9 > THEN
+                                        900 p1 + 'p1' STO
+                                        x 9 - 100 * p2 + 'p2' STO
+                                    ELSE
+                                        x 100 * p1 + 'p1' STO
+                                    END
+                                ELSE
+                                    128821 'p1' STO
+                                    171 'p2' STO
+                                    8 'p3' STO
+                                END
+                            END
+                          @ iii.d
+                          d3 1 - 10 MOD 1 + d3 - 'c' STO        @ c4 
+                          1 c - 'x' STO
+                          100001 x 10010 * + 'p1' STO
+                          d4 1 - 10001 * 'p2' STO
+                          808 'p3' STO
+                          d3 1 - 10 MOD 'y' STO
+                          y 1010 * p2 + 'p2' STO
+                          d1 d3 - 1 - c + 10 MOD 'z' STO
+                          z 10 * p3 + 'p3' STO
+                          2 c - y + z + d1 - 10 / IP 'c' STO
+                          2 c - 100 * p2 + 'p2' STO
+                        END
+                    ELSE IF m1 0 == d3 0 \=/ AND THEN
+                        IF d4 9 \=/ THEN                @ iv.a
+                            90009 d3 1 - 1010 * + 'p1' STO
+                            d4 1 + 10001 * 'p2' STO
+                            909 'p3' STO
+                            19 d4 + 10 / IP 'c' STO
+                            d1 d3 - 1 + c - 10 MOD 'z' STO
+                            z 10 * p3 + 'p3' STO
+                            c d3 + 1 - z + 10 / IP 'c' STO
+                            d2 1 + c - 'x' STO
+                            IF x 9 > THEN
+                                900 p1 + 'p1' STO
+                                x 9 - 100 * p2 + 'p2' STO
+                            ELSE
+                                x 100 * p1 + 'p1' STO
+                            END
+                        ELSE                            @ iv.b
+                            0 0 0 0 \-> c1 c2 c3 mu @ temp vars
+                            \<< 0 'y' STO
+                                DO 'y' INCR DROP
+                                UNTIL d1 3 - y - 10 MOD 8 <
+                                END
+                                d3 y - 10 MOD 'x' STO
+                                3 y + d1 3 - y - 10 MOD + d1 - 10 / IP 'c1' STO
+                                d2 x - 1 - c1 - 10 MOD x + c1 + 1 + d2 - 10 / IP 'c2' STO
+                                IF c2 1 > THEN
+                                    1 'mu' STO
+                                    1 'c2' STO
+                                END
+                                x y + d3 - 10 / IP 'c3' STO
+                                100001 3 c3 - 10010 * + x mu - 1100 * + 'p1' STO
+                                60006 y c2 - mu + 1010 * +
+                                    d2 x - 1 - c1 - mu + 100 * + 'p2' STO
+                                d1 3 - y - 10 MOD c2 + mu - c3 + 10 *
+                                    101 + 'p3' STO
+                            \>>
+                        END
+                    ELSE IF m1 0 == d3 0 == AND THEN    @ v
+                        CASE
+                            d4 0 == THEN                @ v.a
+                                IF d2 0 \=/ THEN
+                                    100001 'p1' STO
+                                    num 100001 - PALIN DROP
+                                    'p3' STO 'p2' STO
+                                ELSE IF d2 0 == d1 0 \=/ AND
+                                  d1 9 \=/ AND THEN
+                                    100001 'p1' STO
+                                    num 100001 - PALIN DROP
+                                    'p3' STO 'p2' STO
+                                ELSE IF d2 0 == d1 0 == AND THEN
+                                    100001 'p1' STO
+                                    8 'p2' STO
+                                    0 'p3' STO
+                                ELSE @ d2==0, d1==9
+                                    90109 'p1' STO
+                                    9889 'p2' STO
+                                    101 'p3' STO
+                                END END END
+                            END
+                            d4 1 == THEN                @ v.b
+                                IF d2 1 >
+                                  d2 1 == d1 0 \=/ AND OR THEN
+                                    110011 'p1' STO
+                                    num 110011 - PALIN DROP
+                                    'p3' STO 'p2' STO
+                                ELSE IF d2 1 == d1 0 == AND THEN
+                                    109901 'p1' STO
+                                    191 'p2' STO
+                                    8 'p3' STO
+                                ELSE IF d2 1 == d1 1 == AND THEN
+                                    110011 'p1' STO
+                                    99 'p2' STO
+                                    0 'p3' STO
+                                ELSE IF d2 0 == d1 1 > AND THEN
+                                    110011 'p1' STO
+                                    d1 2 - 10 * d1 2 - + 'p2' STO
+                                    11 d1 - 'p3' STO
+                                ELSE IF d2 0 == d1 1 == AND THEN
+                                    100001 'p1' STO
+                                    10001 'p2' STO
+                                    8 'p3' STO
+                                ELSE
+                                    100001 'p1' STO
+                                    9999 'p2' STO
+                                    0 'p3' STO
+                                END END END END END
+                            END
+                            d4 2 == THEN                @ v.c
+                                IF d2 1 >
+                                  d2 1 == d1 1 > AND OR THEN
+                                    120021 'p1' STO
+                                    num 120021 - PALIN DROP
+                                    'p3' STO 'p2' STO
+                                ELSE IF d2 1 == d1 0 == AND THEN
+                                    119911 'p1' STO
+                                    181 'p2' STO
+                                    9 'p3' STO
+                                ELSE IF d2 1 == d1 1 == AND THEN
+                                    119911 'p1' STO
+                                    191 'p2' STO
+                                    9 'p3' STO
+                                ELSE IF d2 0 == d1 2 > AND THEN
+                                    120021 'p1' STO
+                                    IF d1 3 \=/ THEN
+                                        d1 3 - 10 * d1 3 - + 'p2' STO
+                                        13 d1 - 'p3' STO
+                                    ELSE
+                                        9 'p2' STO
+                                        1 'p3' STO
+                                    END
+                                ELSE IF d2 0 == d1 2 == AND THEN
+                                    119911 'p1' STO
+                                    101 'p2' STO
+                                    9 'p3' STO
+                                ELSE IF d2 0 == d1 1 == AND THEN
+                                    100001 'p1' STO
+                                    20002 'p2' STO
+                                    8 'p3' STO
+                                ELSE
+                                    119911 'p1' STO
+                                    88 'p2' STO
+                                    2 'p3' STO
+                                END END END END END END
+                            END
+                            d4 3 == THEN                @ v.d
+                                0 0 \-> c1 c2 @ temp vars
+                                \<< 0 'y' STO
+                                    DO 'y' INCR DROP
+                                    UNTIL d1 1 - y - 10 MOD 0 \=/
+                                          d1 1 - y - 10 MOD 9 \=/ AND
+                                    END
+                                    2 y + d1 1 - y - 10 MOD + d1 - 10 / IP 'c1' STO
+                                    9 y - d2 y + 2 + 10 MOD + 9 + d2 - 10 / IP 'c2' STO
+                                    100001 9 y - c1 - 1100 * + 'p1' STO
+                                    20002 y c2 - 1 + c1 + 1010 * +
+                                        d2 y + 2 + 10 MOD 100 * + 'p2' STO
+                                    d1 1 - y - 10 MOD c2 + 1 - c1 - 10 *
+                                        909 + 'p3' STO
+                                \>>
+                            END
+                          @ v.e
+                          0 0 \-> c1 c2
+                          \<< 0 'y' STO
+                              DO 'y' INCR DROP
+                              UNTIL d1 1 - y - 10 MOD 0 \=/
+                                    d1 1 - y - 10 MOD 9 \=/ AND
+                              END
+                              1 y + d1 1 - y - 10 MOD + d1 - 10 / IP 'c1' STO
+                              11 y - d2 y + 1 - 10 MOD + d2 - 10 / IP 'c2' STO
+                              120021 10 y - c1 - 1100 * + 'p1' STO
+                              d4 3 - 10001 * y c2 - c1 + 1010 * +
+                                  d2 y + 1 - 10 MOD 100 * + 'p2' STO
+                              d1 2 - y - 10 MOD c2 + c1 - 10 * 101 + 'p3' STO
+                          \>>
+                        END
+                    END END END END END
+                    p1 R\->I p2 R\->I p3 R\->I
+                \>>
             \>>
-            p1 NL\->I p2 NL\->I p3 NL\->I
         END
     \>>
 \>>
