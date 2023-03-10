@@ -5,6 +5,7 @@
 @ number --> palidrome-1 | palindrome-2 | palindrome-3
 \<< DUP I\->NL DUP SIZE \-> num d n
     \<< CASE
+            n 1 == THEN num 0 0 END
             n 2 == THEN num d SML2 END
             n 3 == THEN num d SML3 END
             n 4 == THEN num d SML4 END
