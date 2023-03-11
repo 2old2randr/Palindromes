@@ -1,3 +1,5 @@
+@ Six digit numbers
+@ num d --> p1 | p2 | p3
 \<< \-> num d
     \<< IF d 1 GET 1 \=/ THEN
             d NTYPE \-> ty spl d p1 p2 p3
