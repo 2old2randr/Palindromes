@@ -82,11 +82,12 @@
                     p2 m 1 + y PUT 'p2' STO
                     p3 m     0 PUT 'p3' STO
                     p3 m 1 - 0 PUT 'p3' STO
-                ELSE IF y 0 == z 9 \=/ THEN         @ III.3.iii
+                ELSE IF y 0 == z 9 \=/ AND THEN     @ III.3.iii
                     p1 m GET 1 - 'x' STO
                     p1 m     x PUT 'p1' STO
                     p1 m 2 + x PUT 'p1' STO
-                    p2 m     y 1 - PUT 'p2' STO
+                    p2 m GET 1 - 'y' STO
+                    p2 m     y PUT 'p2' STO
                     p2 m 1 - 9 PUT 'p2' STO
                     p2 m 1 + 9 PUT 'p2' STO
                     'z' INCR DROP

@@ -2,7 +2,7 @@
 @ num d --> p1 | p2 | p3
 \<< \-> num d
     \<< d 1 GET d 2 GET d 3 GET d 4 GET \-> d3 d2 d1 d0
-        \<< d3 1000 * d3 + \-> d00d
+        \<< d3 1001 * \-> d00d
             \<< CASE
                     num 1000 == THEN 999 1 0 END         @ v
                     num d00d == THEN d00d 0 0 END
@@ -15,46 +15,48 @@
                           212 0
                         END
                     END
-                @ General case
-                num d00d - DUP I\->NL \-> m md
-                \<< CASE
-                        m 10 < THEN d00d m 0 END
-                        m 10 == THEN d00d 9 1 END
-                        md SIZE 2 ==
-                          md 1 GET md 2 GET 1 + \=/ AND
-                          md SIZE 2 \=/ OR THEN             @ i
-                            @ m is the sum of two palindromes
-                            m PALIN DROP d00d UNROT
-                        END
-                        md SIZE 2 ==
-                          md 1 GET md 2 GET 1 + == AND
-                          md 2 GET 0 \=/ AND
-                          md 2 GET 9 \=/ AND THEN
-                            IF d3 md 2 GET + d0 == THEN     @ iii.a
-                                IF d3 1 \=/ THEN            @ iii.a.1
-                                    @ d3 0 md[2]+1 d0
-                                    d3 1 - 1000 * 880 + d3 1 - +
-                                    131
-                                    md 2 GET 10 * md 2 GET +
-                                ELSE                        @ iii.a.2
-                                    @ 1 0 md[2]+1 md[2]+1
-                                    999
-                                    md 2 GET 1 + 10 * md 2 GET 1 + +
-                                    1
+                    num d00d > THEN
+                        @ General case
+                        num d00d - DUP I\->NL \-> m md
+                        \<< CASE
+                                m 10 < THEN d00d m 0 END
+                                m 10 == THEN d00d 9 1 END
+                                md SIZE 2 ==
+                                  md 1 GET md 2 GET 1 + \=/ AND
+                                  md SIZE 2 \=/ OR THEN             @ i
+                                    @ m is the sum of two palindromes
+                                    m PALIN DROP d00d UNROT
                                 END
-                            ELSE                            @ iii.b
-                                @ d3 + md[2] == 10 + d0
-                                d3 1 - 1000 * 880 + d3 1 - +
-                                131
-                                md 2 GET 10 * md 2 GET +
+                                md SIZE 2 ==
+                                  md 1 GET md 2 GET 1 + == AND
+                                  md 2 GET 0 \=/ AND
+                                  md 2 GET 9 \=/ AND THEN
+                                     IF d3 md 2 GET + d0 == THEN     @ iii.a
+                                         IF d3 1 \=/ THEN            @ iii.a.1
+                                             @ d3 0 md[2]+1 d0
+                                             d3 1 - 1000 * 880 + d3 1 - +
+                                             131
+                                             md 2 GET 10 * md 2 GET +
+                                         ELSE                        @ iii.a.2
+                                             @ 1 0 md[2]+1 md[2]+1
+                                             999
+                                             md 2 GET 1 + 10 * md 2 GET 1 + +
+                                             1
+                                         END
+                                     ELSE                            @ iii.b
+                                         @ d3 + md[2] == 10 + d0
+                                         d3 1 - 1000 * 880 + d3 1 - +
+                                         131
+                                         md 2 GET 10 * md 2 GET +
+                                     END
+                                END
                             END
-                        END
-                      @ num=d3 0 0 d0                       @ iv
-                      d3 1 - 1000 * 990 + d3 1 - +
-                      10 d0 + d3 -
-                      1
+                        \>>
                     END
-                \>>
+                  @ num=d3 0 0 d0
+                  d3 1 - 1001 * 990 +                              @ iv
+                  10 d0 + d3 -
+                  1
                 END
             \>>
         \>>
