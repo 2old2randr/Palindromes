@@ -10,9 +10,13 @@
                 0 0 0 0 0 0 0
                 \-> m1 m2 p1 p2 p3 x y z c
                 \<< IF m1 0 \=/ m2 0 \=/ AND THEN       @ i
-                        @ x1+y1 = g+d4-1; x2+y2=g+d3-1
-                        99099 'p1' STO
-                        d4 10001 * d3 1010 * + 'p2' STO
+                        @ x1+y1 = g+d4-1; x1, y1 > 0
+                        9 d4 + 2 / IP 'y' STO
+                        9 d4 + y - 10001 * 'p1' STO    @ x1=(9+d4)/2 + remainder
+                        y 10001 * 'p2' STO    @ y1=(9+d4)/2
+                        @ x2+y2=g+d3-1 so x2=9,y2=d3
+                        9090 p1 + 'p1' STO
+                        d3 1010 * p2 + 'p2' STO
                         m1 101 * 'p3' STO
                         9 d4 + m1 + 10 / IP 'c' STO
                         @ z2=D(d1-x2-y2-c1)
@@ -28,8 +32,13 @@
                             x 100 * p1 + 'p1' STO
                         END
                     ELSE IF m2 0 == d2 0 \=/ AND THEN   @ ii
-                        99099 'p1' STO
-                        d4 10001 * d3 1010 * + 'p2' STO
+                        @ x1+y1 = 9+d4; x1,y1 > 0
+                        9 d4 + 2 / IP 'y' STO
+                        9 d4 + y - 10001 * 'p1' STO     @ x1=(9+d4)/2 + remainder
+                        y 10001 * 'p2' STO     @ y1=(9+d4)/2
+                        @ x2+y2=9+d3 so x2=9,y2=d3
+                        9090 p1 + 'p1' STO
+                        d3 1010 * p2 + 'p2' STO
                         909 'p3' STO
                         9 d4 + 9 + 10 / IP 'c' STO
                         d1 9 - d3 - c - 10 MOD 'z' STO
@@ -104,6 +113,12 @@
                         END
                     ELSE IF m1 0 == d3 0 \=/ AND THEN
                         IF d4 9 \=/ THEN                @ iv.a
+                            @ x1+y1=10+d4; x1,y1 > 0
+                            10 d4 + 2 / IP 'y' STO
+                            10 d4 + y - 10001 * 'p1' STO     @ x1=(10+d4)/2 + remainder
+                            y 10001 * 'p2' STO     @ y1=(10+d4)/2
+                            @ x2+y2=d3-1; x2,y2 >= 0
+                            d3 1 - 1010 * p1 + 'p1' STO
                             90009 d3 1 - 1010 * + 'p1' STO
                             d4 1 + 10001 * 'p2' STO
                             909 'p3' STO
