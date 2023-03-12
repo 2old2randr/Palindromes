@@ -6,4 +6,4 @@ Although the algrithms described in the paper work for any base >= 5, this imple
 for base 10 only. Uses the functions I→NL, NL→I, LPOP and REV from the excellent ListExt library that
 can be found at https://www.hpcalc.org/details/7971.
 
-The original paper can be found at https://arxiv.org/abs/1602.06208
+The original paper can be found at http://matematicas.uam.es/~franciscojavier.cilleruelo/Papers/three%20palindromes%20are%20enough%20-%202016-.pdf
