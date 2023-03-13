@@ -2,8 +2,7 @@
 @ num d --> p1 | p2 | p3
 \<< \-> num d
     \<< d 1 GET d 2 GET d 3 GET d 4 GET d 5 GET \-> d4 d3 d2 d1 d0
-        \<<
-            IF d4 1 \=/ THEN
+        \<< IF d4 1 \=/ THEN
                 d NTYPE \-> type special d p1 p2 p3
                 \<<
                     @ type should be A - apply Algorithm 1
@@ -11,57 +10,58 @@
                 \>>
             ELSE
                 @ most solutions are of the form 1 d3 x x d3 1
-                10000 d3 1000 * + d3 10 * + 1 + \-> d30d3
-                \<< num d30d3 - DUP I\->NL \-> m md
-                    \<< CASE
-                            m 201 == THEN d30d3 100 + 101 0 END    @ ii
-                            num 10000 == THEN 9999 1 0 END         @ v
-                            m 10 < THEN d30d3 m 0 END
-                            m 10 == THEN d30d3 9 1 END
-                            md SIZE 2 ==
-                              md 1 GET md 2 GET 1 + \=/ AND
-                              md SIZE 2 \=/ OR THEN                @ i
-                                @ m is the sum of two palindromes
-                                m PALIN DROP d30d3 UNROT
+                10001 d3 1010 * + \-> d30d3
+                \<< IF num d30d3 \>= THEN
+                        num d30d3 - DUP I\->NL \-> m md
+                        \<< CASE
+                                m 201 == THEN d30d3 100 + 101 0 END     @ ii
+                                @ AND does not short-circuit - handle len(md)<2 separately
+                                m 10 < THEN d30d3 m 0 END
+                                m 10 == THEN d30d3 9 1 END
+                                md SIZE 2 ==
+                                   md 1 GET md 2 GET 1 + \=/ AND
+                                   md SIZE 2 \=/ OR THEN                @ i
+                                    @ m is the sum of two palindromes
+                                    m PALIN DROP d30d3 UNROT
+                                END
+                                md SIZE 2 ==
+                                   md 1 GET md 2 GET 1 + == AND
+                                   d3 0 \=/ AND THEN                    @ iii
+                                    10101 d3 1 - 1010 * +
+                                    909 md 2 GET 1 + 10 * +
+                                    md 2 GET 1 +
+                                END
+                                md SIZE 2 ==
+                                   md 1 GET md 2 GET 1 + == AND
+                                   d3 0 == AND THEN                     @ iv
+                                    9999
+                                    md 2 GET 1 + 11 *
+                                    1
+                                END
                             END
-                            md SIZE 2 ==
-                              md 1 GET md 2 GET 1 + == AND
-                              d3 0 \=/ AND THEN                    @ iii
-                                10000 d3 1 - 1000 * + 100 + d3 1 - 10 * + 1 +
-                                900 md 2 GET 1 + 10 * + 9 +
-                                md 2 GET 1 +
-                            END
-                            md SIZE 2 ==
-                              md 1 GET md 2 GET 1 + == AND
-                              d3 0 == AND THEN                     @ iv
-                                9999
-                                md 2 GET 1 + 10 * md 2 GET 1 + +
-                                1
-                            END
-                          @ p1 is of the form 1 d3-1 9 d3-1 1
-                          10000 d3 1 - 1000 * + 900 + d3 1 - 10 * + 1 +
-                          \-> d39d3
-                          \<<
-                              num d39d3 - 'm' STO
-                              m I\->NL 'md' STO
-                              IF md SIZE 2 < THEN
-                                  d39d3 m 0
-                              ELSE
-                                  CASE
-                                      m 10 == THEN d39d3 9 1 END
-                                      m 201 \=/                    @ vi
-                                        md 1 GET md 2 GET 1 + \=/ THEN
-                                          m PALIN DROP d39d3 UNROT
-                                      END
-                                    @ vii
-                                    10000 d3 1 - 1000 * + 800 + d3 1 - 10 * + 1 +
-                                    100 md 2 GET 1 + 10 * + 1 +
+                        \>>
+                    ELSE IF num 10000 == THEN
+                        9999 1 0                                        @ v
+                    ELSE
+                        @ p1 is of the form 1 d3-1 9 d3-1 1
+                        10901 d3 1 - 1010 * + \-> d39d3
+                        \<<
+                            num d39d3 - DUP I\->NL \-> m md
+                            \<< IF md SIZE 2 \=/ THEN                  @ vi
+                                    @ m is the sum of two palindromes
+                                    m PALIN DROP d39d3 UNROT
+                                ELSE IF md SIZE 2 ==                   @ vi
+                                        md 1 GET md 2 GET 1 + \=/ AND THEN
+                                    @ Can't combine with above since AND does not short-circuit
+                                    m PALIN DROP d39d3 UNROT
+                                ELSE                                   @ vii
+                                    10801 d3 1 - 1010 * +
+                                    101 md 2 GET 1 + 10 * +
                                     md 2 GET 1 -
-                                  END
-                              END
-                          \>>
-                        END
-                    \>>
+                                END END
+                            \>>
+                        \>>
+                    END END
                 \>>
             END
         \>>
