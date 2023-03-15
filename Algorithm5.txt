@@ -2,42 +2,46 @@
 @ Algorithm-2 or Algorithm-4
 @ number | palindrome-1 --> palindrome-1 | palindrome-2 | palindrome-3
 \<< 1 \-> num p1 mult
-    \<< p1 SIZE 2 IDIV2 DROP \-> m
+    \<< p1 SIZE 2 / IP R\->I \-> m
         \<< 10 m ^ 10 m 1 - ^ + DUP
-            num SWAP - I\->NL REV \-> s d
+            num SWAP - I\->NL REVLIST \-> s d
             \<< IF d m 1 + GET 0 \=/ d m GET 0 \=/ AND NOT THEN
                     'mult' INCR DROP
                     num s 2 * - I\->NL
                 ELSE
-                    d REV
+                    d REVLIST
                 END
                 NTYPE \-> type special d p1 p2 p3
                 \<< CASE
                         p1 SIZE 2 MOD THEN
                             @ We need to change p1 p2 p3 as if
                             @ the number was classified as B1/B2
-                            d REV DUP SIZE \-> d n
+                            d REVLIST DUP SIZE \-> d n
                             \<< d 2 GET d 3 GET d n GET
                                 n ZEROLST 3 NDUPN DROP
                                 \-> d2 d3 dn p1 p2 p3
                                 \<< IF dn d3 - 10 MOD THEN
                                         @ Use B1 setup
-                                        p1 1 1 PUT p1 n 1 PUT
-                                        d2 DUP p1 2 ROT PUT SWAP p1 n 1 - ROT PUT ADD ADD ADD 'p1' STO
-                                        d3 1 - DUP p2 3 ROT PUT SWAP p2 n ROT PUT ADD 'p2' STO
+                                        d2 DUP
+                                        p1 1 1 PUT n 1 PUT 2 ROT PUT n 1 - ROT PUT 'p1' STO
+                                        d3 1 - DUP
+                                        p2 3 ROT PUT n ROT PUT 'p2' STO
                                         dn d3 - 10 MOD DUP
-                                        p3 4 ROT PUT SWAP p3 n ROT PUT ADD 'p3' STO
+                                        p3 4 ROT PUT n ROT PUT 'p3' STO
                                     ELSE
                                         @ Use B2 setup
-                                        p1 1 1 PUT p1 n 1 PUT
-                                        d2 DUP p1 2 ROT PUT SWAP p1 n 1 - ROT PUT ADD ADD ADD 'p1' STO
-                                        d3 2 - DUP p2 3 ROT PUT SWAP p2 n ROT PUT ADD 'p2' STO
-                                        p3 4 1 PUT p3 n 1 PUT ADD 'p3' STO
+                                        d2 DUP
+                                        p1 1 1 PUT n 1 PUT 2 ROT PUT n
+                                        1 - ROT PUT 'p1' STO
+                                        d3 2 - DUP
+                                        p2 3 ROT PUT n ROT PUT 'p2'
+                                        STO
+                                        p3 4 1 PUT n 1 PUT 'p3' STO
                                     END
                                     p1 CMPLST 'p1' STO
                                     p2 CMPLST 'p2' STO
                                     p3 CMPLST 'p3' STO
-                                    d REV p1 p2 p3 ALGO4
+                                    d REVLIST p1 p2 p3 ALGO4
                                 \>>
                             \>>
                         END

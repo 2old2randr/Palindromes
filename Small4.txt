@@ -11,7 +11,7 @@
                             d3 1 == THEN 1111 88 3 END
                             d3 9 == THEN 9119 88 3 END
                           @ d3 is 2-8
-                          d3 1 - 1000 * 990 + d3 1 - +
+                          d3 1 - 1001 * 990 +
                           212 0
                         END
                     END
@@ -34,20 +34,20 @@
                                      IF d3 md 2 GET + d0 == THEN     @ iii.a
                                          IF d3 1 \=/ THEN            @ iii.a.1
                                              @ d3 0 md[2]+1 d0
-                                             d3 1 - 1000 * 880 + d3 1 - +
+                                             d3 1 - 1001 * 880 +
                                              131
-                                             md 2 GET 10 * md 2 GET +
+                                             md 2 GET 11 *
                                          ELSE                        @ iii.a.2
                                              @ 1 0 md[2]+1 md[2]+1
                                              999
-                                             md 2 GET 1 + 10 * md 2 GET 1 + +
+                                             md 2 GET 1 + 11 *
                                              1
                                          END
                                      ELSE                            @ iii.b
                                          @ d3 + md[2] == 10 + d0
-                                         d3 1 - 1000 * 880 + d3 1 - +
+                                         d3 1 - 1001 * 880 +
                                          131
-                                         md 2 GET 10 * md 2 GET +
+                                         md 2 GET 11 *
                                      END
                                 END
                             END
