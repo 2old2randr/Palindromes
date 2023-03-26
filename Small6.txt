@@ -195,8 +195,10 @@
                                     0 'p3' STO
                                 ELSE IF d2 0 == d1 1 > AND THEN
                                     110011 'p1' STO
-                                    d1 2 - 10 * d1 2 - + 'p2' STO
-                                    11 d1 - 'p3' STO
+                                    d1 2 - 11 *
+                                    11 d1 -
+                                    IF DUP2 < THEN SWAP END
+                                    'p3' STO 'p2' STO
                                 ELSE IF d2 0 == d1 1 == AND THEN
                                     100001 'p1' STO
                                     10001 'p2' STO
@@ -224,8 +226,10 @@
                                 ELSE IF d2 0 == d1 2 > AND THEN
                                     120021 'p1' STO
                                     IF d1 3 \=/ THEN
-                                        d1 3 - 10 * d1 3 - + 'p2' STO
-                                        13 d1 - 'p3' STO
+                                        d1 3 - 11 *
+                                        13 d1 -
+                                        IF DUP2 < THEN SWAP END
+                                        'p3' STO 'p2' STO
                                     ELSE
                                         9 'p2' STO
                                         1 'p3' STO
