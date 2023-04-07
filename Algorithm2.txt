@@ -63,11 +63,11 @@
                             p3 m 1 - GET 1 - 'z' STO
                             p3 m z PUT m 1 - z PUT 'p3' STO
                         ELSE                          @ II.2.ii.c
-                            IF p3 2 GET 0 \=/ THEN
+                            IF c m 1 - GET 0 \=/ THEN  @ normal case
                                 p1 m 1 - GET 1 - 'x' STO
                                 p1 m 1 - x PUT m 2 + x PUT m 1 PUT m 1 + 1 PUT 'p1' STO
                                 p2 m 1 - 9 PUT m 6 PUT m 1 + 9 PUT 'p2' STO
-                                p3 m 2 + 0 PUT m 2 PUT m 1 - 2 PUT 'p3' STO
+                                p3 m 2 PUT m 1 - 2 PUT 'p3' STO
                             ELSE                    @ Called from SML6
                                 IF p1 2 GET 0 \=/ THEN
                                     p1 2 GET 1 - 'x' STO
