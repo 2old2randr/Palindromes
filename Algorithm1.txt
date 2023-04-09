@@ -14,48 +14,46 @@
         p3 1 GET
         0 0 0
         \-> l1 m c l2 l3 x y z d1 d2 ci
-        \<< x y + z + 10 / IP 'ci' STO
-            c 1 ci PUT 'c' STO            @ carry from column 1
-            d 2 m * 1 - GET 'd1' STO
-            d 2 m *     GET 'd2' STO
-            IF z d1 < THEN d2 y - ELSE d2 y - 1 - END
-            10 MOD 'x' STO
-            p1 2 x PUT l1 1 - x PUT 'p1' STO
-            d1 z - 1 - 10 MOD 'y' STO
-            p2 2 y PUT l2 1 - y PUT 'p2' STO
-            d 2 GET x - y - ci - 10 MOD 'z' STO
-            p3 2 z PUT l3 1 - z PUT 'p3' STO
-            x y + z + ci + d 2 GET - 10 / IP 'ci' STO
-            c 2 ci PUT 'c' STO
+        \<< x y + z + 10 / IP DUP 'ci' STO
+            'c' 1 ROT PUT            @ carry from column 1
+            2 m * DUP
+            d SWAP 1 - GET 'd1' STO
+            d SWAP GET 'd2' STO
+            IF z d1 < THEN d2 y - ELSE d2 y - 1 - END 10 MOD DUPDUP 'x' STO
+            p1 2 ROT PUT l1 1 - ROT PUT 'p1' STO
+            d1 z - 1 - 10 MOD DUPDUP 'y' STO
+            p2 2 ROT PUT l2 1 - ROT PUT 'p2' STO
+            d 2 GET x - y - ci - 10 MOD DUPDUP 'z' STO
+            p3 2 ROT PUT l3 1 - ROT PUT 'p3' STO
+            x y + z + ci + 10 / IP DUP 'ci' STO
+            'c' 2 ROT PUT
             IF m 3 \>= THEN
                 3 m FOR i
                     d 2 m * i - 1 + GET 'd1' STO
-                    d i             GET 'd2' STO
-                    IF z d1 < THEN 1 ELSE 0 END 'x' STO
-                    p1 i x PUT l1 i - 1 + x PUT 'p1' STO
-                    d1 z - 1 - 10 MOD 'y' STO
-                    p2 i y PUT l2 i - 1 + y PUT 'p2' STO
-                    d2 x - y - ci - 10 MOD 'z' STO
-                    p3 i z PUT l3 i - 1 + z PUT 'p3' STO
-                    x y + z + ci + d2 - 10 / IP 'ci' STO
-                    c i ci PUT 'c' STO
+                    IF z d1 < THEN 1 ELSE 0 END DUPDUP 'x' STO
+                    p1 i ROT PUT l1 i - 1 + ROT PUT 'p1' STO
+                    d1 z - 1 - 10 MOD DUPDUP 'y' STO
+                    p2 i ROT PUT l2 i - 1 + ROT PUT 'p2' STO
+                    d i GET x - y - ci - 10 MOD DUPDUP 'z' STO
+                    p3 i ROT PUT l3 i - 1 + ROT PUT 'p3' STO
+                    x y + z + ci + 10 / IP DUP 'ci' STO
+                    'c' i ROT PUT
                 NEXT
             END
-            p1 m 1 + 0 PUT 'p1' STO
+            'p1' m 1 + 0 PUT
             @ adjust if carry in posn m is 0/2
             IF c m GET 0 == THEN             @ I.2
-                p1 m 1 + 1 PUT 'p1' STO
+                'p1' m 1 + 1 PUT
             ELSE IF c m GET 2 == THEN
                 IF p3 m GET 9 == THEN        @ I.3.1
-                    p1 m 1 + 1 PUT 'p1' STO
-                    p2 m GET 1 - 'y' STO
-                    p2 m 1 + y PUT m y PUT 'p2' STO
-                    p3 m     0 PUT 'p3' STO
+                    'p1' m 1 + 1 PUT
+                    p2 m GET 1 - DUPDUP
+                    p2 m 1 + ROT PUT m ROT PUT 'p2' STO
+                    'p3' m 0 PUT
                 ELSE                         @ I.3.ii
-                    p2 m GET 1 - 'y' STO
-                    p2 m 1 + y PUT m y PUT 'p2' STO
-                    p3 m GET 1 + 'z' STO
-                    p3 m z PUT 'p3' STO
+                    p2 m GET 1 - DUPDUP
+                    p2 m 1 + ROT PUT m ROT PUT 'p2' STO
+                    'p3' m p3 m GET 1 + PUT
                 END
             END END
             p1 NL\->I p2 NL\->I p3 NL\->I
