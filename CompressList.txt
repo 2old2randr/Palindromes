@@ -1,8 +1,8 @@
 @ Shortens a list by removing zeros from the head of the list
 @ list --> list
 \<< DUP
-    WHILE 1 GET 0 ==
-    REPEAT LPOP DROP DUP
+    WHILE HEAD 0 ==
+    REPEAT TAIL DUP
     END
 \>>
 'CMPLST' STO
