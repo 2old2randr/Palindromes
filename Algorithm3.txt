@@ -15,7 +15,7 @@
         \-> l1 m c l2 l3 x y z d1 d2 ci
         \<< x y + z + 10 / IP DUP 'ci' STO
             'c' 1 ROT PUT
-            2 m *
+            2 m * DUP
             d SWAP 2 - GET 'd1' STO
             d SWAP 1 - GET 'd2' STO
             IF z d1 < THEN d2 y - ELSE d2 y - 1 - END 10 MOD DUPDUP 'x' STO
