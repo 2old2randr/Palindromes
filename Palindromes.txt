@@ -4,34 +4,38 @@
 @ Florian Luca and Lewis Baxter
 @ number --> palidrome-1 | palindrome-2 | palindrome-3
 \<< DUP I\->NL DUP SIZE \-> num d n
-    \<< CASE
-            n 1 == THEN num 0 0 END
-            n 2 == THEN num d SML2 END
-            n 3 == THEN num d SML3 END
-            n 4 == THEN num d SML4 END
-            n 5 == THEN num d SML5 END
-            n 6 == THEN num d SML6 END
-          @ > 6 digits we apply Algo1 - Algo5
-          d NTYPE \-> type special d p1 p2 p3
-          \<< IF special THEN
-                  num p1 ALGO5
-              ELSE IF { "A1" "A2" "A3" "A4" } type POS
-                  n 2 MOD AND
-                  { "A5" "A6" } type POS
-                  n 2 MOD NOT AND OR
-              THEN
-                  d p1 p2 p3 ALGO1
-              ELSE IF type 1 1 SUB "A" == THEN
-                  @ type A1-A4 and even digits or A5-A6 with odd
-                  d p1 p2 p3 ALGO2
-              ELSE IF n 2 MOD THEN
-                  @ type B with odd number of digits
-                  d p1 p2 p3 ALGO3
-              ELSE
+    \<< IF n 6 > THEN
+            @ > 6 digits we apply Algo1 - Algo5
+            d NTYPE \-> type special d p1 p2 p3
+            \<< CASE
+                  special THEN
+                    num p1 ALGO5
+                  END
+                  { "A1" "A2" "A3" "A4" } type POS n 2 MOD AND
+                    { "A5" "A6" } type POS n 2 MOD NOT AND OR THEN
+                    d p1 p2 p3 ALGO1
+                  END
+                  type 1 1 SUB "A" == THEN
+                    @ type A1-A4 and even digits or A5-A6 with odd
+                    d p1 p2 p3 ALGO2
+                  END
+                  n 2 MOD THEN
+                    @ type B with odd number of digits
+                    d p1 p2 p3 ALGO3
+                  END
                   @ Type B with even number of digits
                   d p1 p2 p3 ALGO4
-              END END END END
-          \>>
+                END
+            \>>
+        ELSE
+            CASE
+                n 6 == THEN num d SML6 END
+                n 5 == THEN num d SML5 END
+                n 4 == THEN num d SML4 END
+                n 3 == THEN num d SML3 END
+                n 2 == THEN num d SML2 END
+                n 1 == THEN num 0 0 END
+            END
         END
     \>>
 \>>
