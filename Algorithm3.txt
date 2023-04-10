@@ -18,7 +18,7 @@
             2 m * DUP
             d SWAP 2 - GET 'd1' STO
             d SWAP 1 - GET 'd2' STO
-            IF z d1 < THEN d2 y - ELSE d2 y - 1 - END 10 MOD DUPDUP 'x' STO
+            d2 y - IF z d1 \>= THEN 1 - END 10 MOD DUPDUP 'x' STO
             @ p1 has two digits populated (both 1) so
             @ the subscript is 1 more than the one for p2 and p3
             p1 3 ROT PUT l1 2 - ROT PUT 'p1' STO
@@ -32,7 +32,7 @@
                 3 m 1 -
                 FOR i
                     d 2 m * i - GET 'd1' STO
-                    IF z d1 < THEN 1 ELSE 0 END DUPDUP 'x' STO
+                    z d1 < 1 0 IFTE DUPDUP 'x' STO
                     p1 i 1 + ROT PUT l1 i - ROT PUT 'p1' STO
                     d1 z - 1 - 10 MOD DUPDUP 'y' STO
                     p2 i ROT PUT l2 i - 1 + ROT PUT 'p2' STO
