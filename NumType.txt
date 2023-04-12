@@ -150,9 +150,7 @@
                 @ digits and one of the middle positions in the input
                 @ number is zero
                 DUP
-                IF d SWAP GET 0 == d SWAP 1 + GET 0 == OR THEN 1
-                ELSE 0
-                END
+                d SWAP GET 0 == SWAP d SWAP 1 + GET 0 == OR 1 0 IFTE
             END
             d REVLIST
             p1
