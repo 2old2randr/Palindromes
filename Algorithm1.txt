@@ -30,7 +30,7 @@
             IF m 3 \>= THEN
                 3 m FOR i
                     d 2 m * i - 1 + GET 'd1' STO
-                    z d1 < 1 0 IFTE DUPDUP 'x' STO
+                    z d1 < DUPDUP 'x' STO
                     p1 i ROT PUT l1 i - 1 + ROT PUT 'p1' STO
                     d1 z - 1 - 10 MOD DUPDUP 'y' STO
                     p2 i ROT PUT l2 i - 1 + ROT PUT 'p2' STO
@@ -45,7 +45,7 @@
             IF c m GET 0 == THEN             @ I.2
                 'p1' m 1 + 1 PUT
             ELSE IF c m GET 2 == THEN
-                IF p3 m GET 9 == THEN        @ I.3.1
+                IF p3 m GET 9 == THEN        @ I.3.i
                     'p1' m 1 + 1 PUT
                     p2 m GET 1 - DUPDUP
                     p2 m 1 + ROT PUT m ROT PUT 'p2' STO

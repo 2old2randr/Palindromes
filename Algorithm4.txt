@@ -32,7 +32,7 @@
                 3 m 2 -
                 FOR i
                     d 2 m * i - 1 - GET 'd1' STO
-                    z d1 < 1 0 IFTE DUPDUP 'x' STO
+                    z d1 < DUPDUP 'x' STO
                     p1 i 1 + ROT PUT l1 i - ROT PUT 'p1' STO
                     d1 z - 1 - 10 MOD DUPDUP 'y' STO
                     p2 i ROT PUT l2 i - 1 + ROT PUT 'p2' STO
