@@ -1,0 +1,6 @@
+@ Convert a list of digits to an integer
+@ List --> Integer
+\<< \<< SWAP 10 * + \>>
+    STREAM R\->I
+\>>
+'NL\->I' STO

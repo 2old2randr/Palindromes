@@ -1,0 +1,12 @@
+@ Convert an integer to list of digits
+@ Number --> List
+\<< 0 SWAP ABS IP DUP
+    WHILE 0 >
+    REPEAT
+        10 IDIV2 SWAP
+        ROT 1 + SWAP DUP
+    END
+    DROP
+    \->LIST REVLIST
+\>>
+'I\->NL' STO
