@@ -69,25 +69,25 @@
             LAM m LAM p2 PUTLIST ' LAM p2 STO
             (Adjust middle digits if carry in m is 0 or 2)
             LAM x LAM y %+ LAM z %+ LAM ci %+ %10 %/ %IP ' LAM ci STO
-            LAM ci %0= case ::                (case III.2)
+            LAM ci %0= case ::                (type III.2)
             ;
             LAM ci %2 %= case ::
                 LAM p2 LAM m #1- NTHCOMPDROP ' LAM y STO
                 LAM p3 LAM m #1- NTHCOMPDROP ' LAM z STO
-                LAM y %0<> LAM z %9 %<> AND case ::      (case III.3.i)
+                LAM y %0<> LAM z %9 %<> ANDcase ::      (type III.3.i)
                     LAM y %1- DUP
                     LAM m #1- LAM p2 PUTLIST LAM m #1+ SWAP PUTLIST ' LAM p2 STO
                     LAM p2 LAM m NTHCOMPDROP %1- LAM m LAM p2 PUTLIST ' LAM p2 STO
                     LAM z %1+ DUP
                     LAM m #1- LAM p3 PUTLIST LAM m SWAP PUTLIST ' LAM p3 STO
                 ;
-                LAM y %0<> LAM z %9 %= AND case ::       (case III.3.ii)
+                LAM y %0<> LAM z %9 %= ANDcase ::       (type III.3.ii)
                     %1 LAM m #1+ LAM p1 PUTLIST ' LAM p1 STO
                     LAM y %1- DUP
                     LAM m #1- LAM p2 PUTLIST LAM m #1+ SWAP PUTLIST ' LAM p2 STO
                     %0 DUP LAM m LAM p3 PUTLIST LAM m #1- SWAP PUTLIST ' LAM p3 STO
                 ;
-                LAM y %0= LAM z %9 %<> AND case ::       (case III.3.iii)
+                LAM y %0= LAM z %9 %<> ANDcase ::       (type III.3.iii)
                     LAM p1 LAM m NTHCOMPDROP %1- DUP
                     LAM m LAM p1 PUTLIST LAM m #2+ SWAP PUTLIST ' LAM p1 STO
                     %9 DUP LAM p2 LAM m NTHCOMPDROP %1-
@@ -95,7 +95,7 @@
                     LAM z %1+ DUP
                     LAM m #1- LAM p3 PUTLIST LAM m SWAP PUTLIST ' LAM p3 STO
                 ;
-                (case III.3.iv)
+                (type III.3.iv)
                 %1 LAM p1 LAM m NTHCOMPDROP %1- DUP
                 LAM m LAM p1 PUTLIST LAM m #2+ SWAP PUTLIST LAM m #1+ SWAP PUTLIST ' LAM p1 STO
                 %9 DUP LAM m #1- LAM p2 PUTLIST LAM m #1+ SWAP PUTLIST ' LAM p2 STO

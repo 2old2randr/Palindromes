@@ -17,7 +17,7 @@
                 SIX ROLL SIX ROLL 2DROP
                 ID Algo1
             ;
-            LAM num %10000 %= case ::               (case v)
+            LAM num %10000 %= case ::               (type v)
                 %9999
                 %1
                 %0
@@ -36,7 +36,7 @@
                 { LAM m LAM md LAM mdlen }
                 BIND
                 ::
-                    LAM m %201 %= case ::       (case ii)
+                    LAM m %201 %= case ::       (type ii)
                         LAM d30d3 %100 %+
                         %101
                         %0
@@ -51,28 +51,24 @@
                         %9
                         %1
                     ;
-                    LAM mdlen TWO #=
                     LAM md BINT1 NTHCOMPDROP LAM md BINT2 NTHCOMPDROP %1+ %<>
-                    AND
+                    LAM mdlen TWO #= AND
                     LAM mdlen TWO #<>
-                    OR
-                    case ::              (case i)
+                    ORcase ::              (type i)
                         (m is the sum of two palindromes)
                         LAM m FPTR2 ^R>Z ID Palin
                         DROP
                         LAM d30d3 UNROT
                     ;
-                    LAM mdlen TWO #=
                     LAM md BINT1 NTHCOMPDROP LAM md BINT2 NTHCOMPDROP %1+ %=
-                    AND
+                    LAM mdlen TWO #= AND
                     LAM d3 %0<>
-                    AND
-                    case ::             (case iii)
+                    ANDcase ::             (type iii)
                         %10101 LAM d3 %1- %1010 %* %+
                         %909 LAM md BINT2 NTHCOMPDROP %1+ %10* %+
                         LAM md BINT2 NTHCOMPDROP %1+
                     ;
-                    (case iv - d3=0)
+                    (type iv - d3=0)
                     %9999
                     LAM md BINT2 NTHCOMPDROP %1+ %11 %*
                     %1
@@ -89,17 +85,15 @@
                 { LAM m LAM md LAM mdlen }
                 BIND
                 ::
-                    LAM mdlen TWO #<>
-                    case ::             (case vi)
+                    LAM mdlen TWO #<> case ::             (type vi)
                         (m is the sum of two palindromes)
                         LAM m FPTR2 ^R>Z ID Palin
                         DROP
                         LAM d39d3 UNROT
                     ;
-                    LAM mdlen TWO #=
                     LAM md BINT1 NTHCOMPDROP LAM md BINT2 NTHCOMPDROP %1+ %<>
-                    AND
-                    case ::
+                    LAM mdlen TWO #=
+                    ANDcase ::
                         (m is the sum of two palindromes)
                         LAM m FPTR2 ^R>Z ID Palin
                         DROP

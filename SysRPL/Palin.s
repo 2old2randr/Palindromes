@@ -52,18 +52,15 @@
             (call algorithm that works for the number type)
             LAM type #A5 #< LAM evenDigits NOT AND
             LAM type DUP #A4 #> SWAP #A7 #< AND LAM evenDigits AND
-            OR
-            case ::
+            ORcase ::
                 (types A1..A4 with odd no. of digits & A5..A6 with even no. of digits)
                 ID Algo1
             ;
-            LAM type #A7 #<
-            case ::
+            LAM type #A7 #< case ::
                 (types A1..A4 with even no. of digits & A5..A6 with odd no. of digits)
                 ID Algo2
             ;
-            LAM evenDigits NOT
-            case ::
+            LAM evenDigits NOTcase ::
                 (type B with odd number of digits)
                 ID Algo3
             ;

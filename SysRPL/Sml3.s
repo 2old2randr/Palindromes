@@ -20,14 +20,14 @@
                 %1
                 %0
             ;
-            LAM d2 LAM d0 %> NOT case ::
+            LAM d2 LAM d0 %> NOTcase ::
                 LAM d2 %101 %* LAM d1 %10* %+
                 LAM d0 LAM d2 %-
                 %0
             ;
             LAM d2 LAM d0 %1+ %>=
             LAM d1 %0<>
-            AND case ::
+            ANDcase ::
                 LAM d2 %101 %* LAM d1 %1- %10* %+
                 %10 LAM d0 %+ LAM d2 %-
                 %0
@@ -36,7 +36,7 @@
             LAM d1 %0=
             AND
             LAM d2 LAM d0 %- %1- %10 %MOD %0<>
-            AND case ::
+            ANDcase ::
                 LAM d2 %1- %101 %* %90 %+
                 %10 LAM d0 %+ LAM d2 %- %1+
                 %0

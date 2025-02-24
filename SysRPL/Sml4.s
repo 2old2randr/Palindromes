@@ -13,7 +13,7 @@
         { LAM d00d }
         BIND
         ::
-            LAM num %1000 %= case ::                (case v)
+            LAM num %1000 %= case ::                (type v)
                 %999
                 %1
                 %0
@@ -23,7 +23,7 @@
                 %0
                 %0
             ;
-            LAM num LAM d00d %201 %+ %= case ::     (case ii)
+            LAM num LAM d00d %201 %+ %= case ::     (type ii)
                 LAM d3 %1 %= case ::
                     %1111
                     %88
@@ -56,12 +56,10 @@
                         %9
                         %1
                     ;
-                    LAM length BINT2 #=
                     LAM md BINT1 NTHCOMPDROP LAM md BINT2 NTHCOMPDROP %1+ %=
-                    AND
+                    LAM length BINT2 #= AND
                     LAM length BINT2 #<>
-                    OR
-                    case ::                         (case i)
+                    ORcase ::                         (type i)
                         (m is the sum of two palindromes - recursively call)
                         LAM m FPTR2 ^R>Z ID Palin
                         DROP (should be 0)
@@ -70,23 +68,23 @@
                     ;
                     (length = 2, md1 = md2+1, md2<>0, md2<>9)
                     LAM d3 LAM md BINT2 NTHCOMPDROP %+ LAM d0 %=
-                    case ::                         (case iii.a)
+                    case ::                         (type iii.a)
                         LAM d3 %1 %=
                         ITE
-                        ::                          (case iii.a.1)
+                        ::                          (type iii.a.1)
                             (num = d3 0 md2+1 d0)
                             LAM d3 %1- %1001 %* %880 %+
                             %131
                             LAM md TWO NTHCOMPDROP %11 %*
                         ;
-                        ::                          (case iii.a.2)
+                        ::                          (type iii.a.2)
                             (num = 1 0 md2+1 md2+1)
                             %999
                             LAM md TWO NTHCOMPDROP %1+ %11 %*
                             %1
                         ;
                     ;
-                    (d3 + md2 = d0 + 10)        (case iii.b)
+                    (d3 + md2 = d0 + 10)        (type iii.b)
                     LAM d3 %1- %1001 %* %880 %+
                     %131
                     LAM md TWO NTHCOMPDROP %11 %*
@@ -94,7 +92,7 @@
                 ABND
             ;
             (d3 0 0 d0)
-            LAM d3 %1- %1001 %* %990 %+             (case iv)
+            LAM d3 %1- %1001 %* %990 %+             (type iv)
             %10 LAM d0 %+ LAM d3 %-
             %1
         ;

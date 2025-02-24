@@ -66,18 +66,18 @@
             (adjust if carry in position m is 0 or 2)
             LAM c LAM m NTHCOMPDROP DUP
             %0= case ::
-                %1 LAM m #1+ LAM p1 PUTLIST ' LAM p1 STO    (case I.2)
+                %1 LAM m #1+ LAM p1 PUTLIST ' LAM p1 STO    (type I.2)
                 DROP
             ;
             %2 %= case ::
                 LAM p3 LAM m NTHCOMPDROP %9 %=
-                case ::                                     (case I.3.i)
+                case ::                                     (type I.3.i)
                     %1 LAM m #1+ LAM p1 PUTLIST ' LAM p1 STO
                     LAM p2 LAM m NTHCOMPDROP %1- DUPDUP
                     LAM m #1+ LAM p2 PUTLIST LAM m SWAP PUTLIST ' LAM p2 STO
                     %0 LAM m LAM p3 PUTLIST ' LAM p3 STO
                 ;
-                (case I.3.ii)
+                (type I.3.ii)
                 LAM p2 LAM m NTHCOMPDROP %1- DUPDUP
                 LAM m #1+ LAM p2 PUTLIST LAM m SWAP PUTLIST ' LAM p2 STO
                 LAM p3 LAM m NTHCOMPDROP %1+ LAM m LAM p3 PUTLIST ' LAM p3 STO

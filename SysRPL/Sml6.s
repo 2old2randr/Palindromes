@@ -30,8 +30,9 @@
             }
             BIND
             ::
-                LAM m1 %0<> LAM m2 %0<> AND
-                case ::                 (case i)
+                LAM m1 %0<>
+                LAM m2 %0<>
+                ANDcase ::                 (type i)
                     (x1+y1 = g+d4-1; x1, y1 > 0)
                     %9 LAM d4 %+ %2 %/ %IP ' LAM y STO
                     (x1=[9+d4]/2 + remainder)
@@ -59,8 +60,9 @@
                         LAM x %100 %* LAM p1 %+ ' LAM p1 STO
                     ;
                 ;
-                LAM m2 %0= LAM d2 %0<> AND
-                case ::                (case ii)
+                LAM m2 %0=
+                LAM d2 %0<>
+                ANDcase ::                (type ii)
                     (x1+y1 = 9+d4; x1,y1 > 0)
                     %9 LAM d4 %+ %2 %/ %IP ' LAM y STO
                     (x1=[9+d4]/2 + remainder)
@@ -86,10 +88,11 @@
                         LAM x %100 %* LAM p1 %+ ' LAM p1 STO
                     ;
                 ;
-                LAM m2 %0= LAM d2 %0= AND
-                case ::               (case iii)
+                LAM m2 %0=
+                LAM d2 %0=
+                ANDcase ::               (type iii)
                     LAM d4 %1 %<=
-                    case ::                 (case iii.a)
+                    case ::                 (type iii.a)
                         LAM d4 %0= ITE %80008 %90009 ' LAM p1 STO
                         %10001 LAM d3 %1010 %* %+ ' LAM p2 STO
                         %9009 ' LAM p3 STO
@@ -110,7 +113,7 @@
                         ;
                     ;
                     LAM d4 %2 %=
-                    case ::                 (case iii.c)
+                    case ::                 (type iii.c)
                         %90009 ' LAM p1 STO
                         %20002 LAM d3 %1010 %* %+ ' LAM p2 STO
                         %9009 ' LAM p3 STO
@@ -139,7 +142,7 @@
                             %8 ' LAM p3 STO
                         ;
                     ;
-                    (case iii.d)
+                    (type iii.d)
                     LAM d3 %1 %- %10 %MOD %1+ LAM d3 %- %10 %/ %IP ' LAM c STO      (c4)
                     %1 LAM c %- ' LAM x STO
                     %100001 LAM x %10010 %* %+ ' LAM p1 STO
@@ -152,10 +155,11 @@
                     %2 LAM c %- LAM y %+ LAM z %+ LAM d1 %- %10 %/ %IP ' LAM c STO
                     %2 LAM c %- %100 %* LAM p2 %+ ' LAM p2 STO
                 ;
-                LAM m1 %0= LAM d3 %0<> AND
-                case ::                (case iv)
+                LAM m1 %0=
+                LAM d3 %0<>
+                ANDcase ::                (type iv)
                     LAM d4 %9 %<>
-                    case ::                 (case iv.a)
+                    case ::                 (type iv.a)
                         (x1+y1=10+d4; x1,y1 > 0)
                         %10 LAM d4 %+ %2 %/ %IP ' LAM y STO
                         (x1=[10+d4]/2 + remainder)
@@ -206,10 +210,11 @@
                         %101 %+ ' LAM p3 STO
                     ABND
                 ;
-                LAM m1 %0= LAM d3 %0= AND
-                case ::               (case v)
+                LAM m1 %0=
+                LAM d3 %0=
+                ANDcase ::               (type v)
                     LAM d4 %0=
-                    case ::                 (case v.a)
+                    case ::                 (type v.a)
                         LAM d2 %0<>
                         case ::
                             %100001 ' LAM p1 STO
@@ -218,17 +223,19 @@
                             ' LAM p3 STO
                             ' LAM p2 STO
                         ;
-                        LAM d2 %0= LAM d1 %0<> AND
-                        LAM d1 %9 %<> AND
-                        case ::
+                        LAM d2 %0=
+                        LAM d1 %0<> AND
+                        LAM d1 %9 %<>
+                        ANDcase ::
                             %100001 ' LAM p1 STO
                             LAM num %100001 %- FPTR2 ^R>Z ID Palin
                             DROP
                             ' LAM p3 STO
                             ' LAM p2 STO
                         ;
-                        LAM d2 %0= LAM d1 %0= AND
-                        case ::
+                        LAM d2 %0=
+                        LAM d1 %0=
+                        ANDcase ::
                             %100001 ' LAM p1 STO
                             %8 ' LAM p2 STO
                             %0 ' LAM p3 STO
@@ -239,31 +246,34 @@
                         %101 ' LAM p3 STO
                     ;
                     LAM d4 %1 %=
-                    case ::                 (case v.b)
+                    case ::                 (type v.b)
+                        LAM d2 %1 %=
+                        LAM d1 %0<> AND
                         LAM d2 %1 %>
-                        LAM d2 %1 %= LAM d1 %0<> AND
-                        OR
-                        case ::
+                        ORcase ::
                             %110011 ' LAM p1 STO
                             LAM num %110011 %- FPTR2 ^R>Z ID Palin
                             DROP
                             ' LAM p3 STO
                             ' LAM p2 STO
                         ;
-                        LAM d2 %1 %= LAM d1 %0= AND
-                        case ::
+                        LAM d2 %1 %=
+                        LAM d1 %0=
+                        ANDcase ::
                             %109901 ' LAM p1 STO
                             %191 ' LAM p2 STO
                             %8 ' LAM p3 STO
                         ;
-                        LAM d2 %1 %= LAM d1 %1 %= AND
-                        case ::
+                        LAM d2 %1 %=
+                        LAM d1 %1 %=
+                        ANDcase ::
                             %110011 ' LAM p1 STO
                             %99 ' LAM p2 STO
                             %0 ' LAM p3 STO
                         ;
-                        LAM d2 %0= LAM d1 %1 %> AND
-                        case ::
+                        LAM d2 %0=
+                        LAM d1 %1 %>
+                        ANDcase ::
                             %110011 ' LAM p1 STO
                             LAM d1 %2 %- %11 %*
                             %11 LAM d1 %-
@@ -272,8 +282,9 @@
                             ' LAM p3 STO
                             ' LAM p2 STO
                         ;
-                        LAM d2 %0= LAM d1 %1 %= AND
-                        case ::
+                        LAM d2 %0=
+                        LAM d1 %1 %=
+                        ANDcase ::
                             %100001 ' LAM p1 STO
                             %10001 ' LAM p2 STO
                             %8 ' LAM p3 STO
@@ -283,31 +294,34 @@
                         %0 ' LAM p3 STO
                     ;
                     LAM d4 %2 %=
-                    case ::                 (case v.c)
+                    case ::                 (type v.c)
+                        LAM d2 %1 %=
+                        LAM d1 %1 %> AND
                         LAM d2 %1 %>
-                        LAM d2 %1 %= LAM d1 %1 %> AND
-                        OR
-                        case ::
+                        ORcase ::
                             %120021 ' LAM p1 STO
                             LAM num %120021 %- FPTR2 ^R>Z ID Palin
                             DROP
                             ' LAM p3 STO
                             ' LAM p2 STO
                         ;
-                        LAM d2 %1 %= LAM d1 %0= AND
-                        case ::
+                        LAM d2 %1 %=
+                        LAM d1 %0=
+                        ANDcase ::
                             %119911 ' LAM p1 STO
                             %181 ' LAM p2 STO
                             %9 ' LAM p3 STO
                         ;
-                        LAM d2 %1 %= LAM d1 %1 %= AND
-                        case ::
+                        LAM d2 %1 %=
+                        LAM d1 %1 %=
+                        ANDcase ::
                             %119911 ' LAM p1 STO
                             %191 ' LAM p2 STO
                             %9 ' LAM p3 STO
                         ;
-                        LAM d2 %0= LAM d1 %2 %> AND
-                        case ::
+                        LAM d2 %0=
+                        LAM d1 %2 %>
+                        ANDcase ::
                             %120021 ' LAM p1 STO
                             LAM d1 %3 %<>
                             ITE
@@ -324,14 +338,16 @@
                                 %1 ' LAM p3 STO
                             ;
                         ;
-                        LAM d2 %0= LAM d1 %2 %= AND
-                        case ::
+                        LAM d2 %0=
+                        LAM d1 %2 %=
+                        ANDcase ::
                             %119911 ' LAM p1 STO
                             %101 ' LAM p2 STO
                             %9 ' LAM p3 STO
                         ;
-                        LAM d2 %0= LAM d1 %1 %= AND
-                        case ::
+                        LAM d2 %0=
+                        LAM d1 %1 %=
+                        ANDcase ::
                             %100001 ' LAM p1 STO
                             %20002 ' LAM p2 STO
                             %8 ' LAM p3 STO
@@ -341,7 +357,7 @@
                         %2 ' LAM p3 STO
                     ;
                     LAM d4 %3 %=
-                    case ::                 (case v.d)
+                    case ::                 (type v.d)
                         0 0
                         { LAM c1 LAM c2 } (temp vars)
                         BIND
@@ -361,7 +377,7 @@
                             %909 %+ ' LAM p3 STO
                         ABND
                     ;
-                    (case v.e)
+                    (type v.e)
                     0 0
                     { LAM c1 LAM c2 }
                     BIND

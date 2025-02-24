@@ -46,8 +46,7 @@
             (Classify into types A1..A6, B1..B7 and setup p1, p2, p3)
             LAM d2 %2 %>
             LAM dn LAM d1 %- LAM d2 %- %1+ %10 %MOD %0<>
-            AND
-            case :: (A1)
+            ANDcase :: (A1)
                 #A1
                 LAM p1 LAM d1 BINT1 LAM n LAM SaveInList EVAL ' LAM p1 STO
                 LAM p2 LAM d2 %1- BINT2 LAM n LAM SaveInList EVAL ' LAM p2 STO
@@ -57,19 +56,16 @@
             ;
             LAM d2 %2 %>
             LAM dn LAM d1 %- LAM d2 %- %1+ %10 %MOD %0=
-            AND
-            case :: (A2)
+            ANDcase :: (A2)
                 #A2
                 LAM p1 LAM d1 BINT1 LAM n LAM SaveInList EVAL ' LAM p1 STO
                 LAM p2 LAM d2 %2 %- BINT2 LAM n LAM SaveInList EVAL ' LAM p2 STO
                 LAM p3 %1 BINT3 LAM n LAM SaveInList EVAL ' LAM p3 STO
             ;
             LAM d2 %2 %<=
-            LAM d1 %1 %<>
-            AND
+            LAM d1 %1 %<> AND
             LAM dn LAM d1 %- %2 %+ %10 %MOD %0<>
-            AND
-            case :: (A3)
+            ANDcase :: (A3)
                 #A3
                 LAM p1 LAM d1 %1- BINT1 LAM n LAM SaveInList EVAL ' LAM p1 STO
                 LAM p2 %9 BINT2 LAM n LAM SaveInList EVAL ' LAM p2 STO
@@ -78,24 +74,19 @@
                     BINT3 LAM n LAM SaveInList EVAL ' LAM p3 STO
             ;
             LAM d2 %2 %<=
-            LAM d1 %1 %<>
-            AND
+            LAM d1 %1 %<> AND
             LAM dn LAM d1 %- %2 %+ %10 %MOD %0=
-            AND
-            case :: (A4)
+            ANDcase :: (A4)
                 #A4
                 LAM p1 LAM d1 %1- BINT1 LAM n LAM SaveInList EVAL ' LAM p1 STO
                 LAM p2 %8 BINT2 LAM n LAM SaveInList EVAL ' LAM p2 STO
                 LAM p3 %1 BINT3 LAM n LAM SaveInList EVAL ' LAM p3 STO
             ;
             LAM d1 %1 %=
-            LAM d2 %0=
-            AND
-            LAM d3 %3 %<=
-            AND
+            LAM d2 %0= AND
+            LAM d3 %3 %<= AND
             LAM dn LAM d3 %- %10 %MOD %0<>
-            AND
-            case :: (A5)
+            ANDcase :: (A5)
                 #A5
                 LAM p1 %9 BINT2 LAM n LAM SaveInList EVAL ' LAM p1 STO
                 LAM p2 LAM d3 %1+ BINT3 LAM n LAM SaveInList EVAL ' LAM p2 STO
@@ -103,13 +94,10 @@
                     BINT4 LAM n LAM SaveInList EVAL ' LAM p3 STO
             ;
             LAM d1 %1 %=
-            LAM d2 %0=
-            AND
-            LAM d3 %2 %<=
-            AND
+            LAM d2 %0= AND
+            LAM d3 %2 %<= AND
             LAM dn LAM d3 %- %10 %MOD %0=
-            AND
-            case :: (A6)
+            ANDcase :: (A6)
                 #A5
                 LAM p1 %9 BINT2 LAM n LAM SaveInList EVAL ' LAM p1 STO
                 LAM p2 LAM d3 %1+ BINT3 LAM n LAM SaveInList EVAL ' LAM p2 STO
@@ -117,13 +105,10 @@
                     BINT4 LAM n LAM SaveInList EVAL ' LAM p3 STO
             ;
             LAM d1 %1 %=
-            LAM d2 %2 %<=
-            AND
-            LAM d3 %4 %>=
-            AND
+            LAM d2 %2 %<= AND
+            LAM d3 %4 %>= AND
             LAM dn LAM d3 %- %10 %MOD %0<>
-            AND
-            case :: (B1)
+            ANDcase :: (B1)
                 #B1
                 LAM p1 %1 BINT1 LAM n LAM SaveInList EVAL ' LAM p1 STO
                 LAM p1 LAM d2 BINT2 LAM n #1- LAM SaveInList EVAL ' LAM p1 STO
@@ -132,13 +117,10 @@
                     BINT4 LAM n LAM SaveInList EVAL ' LAM p3 STO
             ;
             LAM d1 %1 %=
-            LAM d2 %2 %<=
-            AND
-            LAM d3 %3 %>=
-            AND
+            LAM d2 %2 %<= AND
+            LAM d3 %3 %>= AND
             LAM dn LAM d3 %- %10 %MOD %0=
-            AND
-            case :: (B2)
+            ANDcase :: (B2)
                 #B2
                 LAM p1 %1 BINT1 LAM n LAM SaveInList EVAL ' LAM p1 STO
                 LAM p1 LAM d2 BINT2 LAM n #1- LAM SaveInList EVAL ' LAM p1 STO
@@ -146,15 +128,11 @@
                 LAM p3 %1 BINT4 LAM n LAM SaveInList EVAL ' LAM p3 STO
             ;
             LAM d1 %1 %=
-            LAM d2 %0<>
-            AND
-            LAM d2 %3 %<
-            AND
-            LAM d3 %2 %<
-            AND
+            LAM d2 %0<> AND
+            LAM d2 %3 %< AND
+            LAM d3 %2 %< AND
             LAM dn %0=
-            AND
-            case :: (B3)
+            ANDcase :: (B3)
                 #B3
                 LAM p1 %1 BINT1 LAM n LAM SaveInList EVAL ' LAM p1 STO
                 LAM p1 LAM d2 %1- BINT2 LAM n #1- LAM SaveInList EVAL ' LAM p1 STO
@@ -162,17 +140,12 @@
                 LAM p3 %1 BINT4 LAM n LAM SaveInList EVAL ' LAM p3 STO
             ;
             LAM d1 %1 %=
-            LAM d2 %0<>
-            AND
-            LAM d2 %3 %<
-            AND
-            LAM d3 %1 %>
-            AND
-            LAM d3 %4 %<
-            AND
+            LAM d2 %0<> AND
+            LAM d2 %3 %< AND
+            LAM d3 %1 %> AND
+            LAM d3 %4 %< AND
             LAM dn %0=
-            AND
-            case :: (B4)
+            ANDcase :: (B4)
                 #B4
                 LAM p1 %1 BINT1 LAM n LAM SaveInList EVAL ' LAM p1 STO
                 LAM p1 LAM d2 BINT2 LAM n #1- LAM SaveInList EVAL ' LAM p1 STO
@@ -180,15 +153,11 @@
                 LAM p3 %8 BINT4 LAM n LAM SaveInList EVAL ' LAM p3 STO
             ;
             LAM d1 %1 %=
-            LAM d2 %0<>
-            AND
-            LAM d2 %3 %<
-            AND
-            LAM d3 %3 %<
-            AND
+            LAM d2 %0<> AND
+            LAM d2 %3 %< AND
+            LAM d3 %3 %< AND
             LAM dn %0<>
-            AND
-            case :: (B5)
+            ANDcase :: (B5)
                 #B5
                 LAM p1 %1 BINT1 LAM n LAM SaveInList EVAL ' LAM p1 STO
                 LAM p1 LAM d2 %1- BINT2 LAM n #1- LAM SaveInList EVAL ' LAM p1 STO
@@ -196,15 +165,11 @@
                 LAM p3 LAM dn BINT4 LAM n LAM SaveInList EVAL ' LAM p3 STO
             ;
             LAM d1 %1 %=
-            LAM d2 %0<>
-            AND
-            LAM d2 %3 %<
-            AND
-            LAM d3 %3 %=
-            AND
+            LAM d2 %0<> AND
+            LAM d2 %3 %< AND
+            LAM d3 %3 %= AND
             LAM dn %3 %- %10 %MOD %0<>
-            AND
-            case :: (B6)
+            ANDcase :: (B6)
                 #B6
                 LAM p1 %1 BINT1 LAM n LAM SaveInList EVAL ' LAM p1 STO
                 LAM p1 LAM d2 BINT2 LAM n #1- LAM SaveInList EVAL ' LAM p1 STO
@@ -213,15 +178,11 @@
                     BINT4 LAM n LAM SaveInList EVAL ' LAM p3 STO
             ;
             LAM d1 %1 %=
-            LAM d2 %0<>
-            AND
-            LAM d2 %3 %<
-            AND
-            LAM d3 %3 %=
-            AND
+            LAM d2 %0<> AND
+            LAM d2 %3 %< AND
+            LAM d3 %3 %= AND
             LAM dn %3 %=
-            AND
-            case :: (B7)
+            ANDcase :: (B7)
                 #B7
                 LAM p1 %1 BINT1 LAM n LAM SaveInList EVAL ' LAM p1 STO
                 LAM p1 LAM d2 BINT2 LAM n #1- LAM SaveInList EVAL ' LAM p1 STO

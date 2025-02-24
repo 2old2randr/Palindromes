@@ -65,24 +65,24 @@
             LAM m LAM p2 PUTLIST ' LAM p2 STO
             (Adjust center digits if the carry in m is 0 or 2)
             LAM ci %0= case ::
-                LAM y %0<> case ::          (case II.2.i)
+                LAM y %0<> case ::          (type II.2.i)
                     %1 DUP LAM m LAM p1 PUTLIST LAM m #1+ SWAP PUTLIST ' LAM p1 STO
                     LAM y %1- LAM m LAM p2 PUTLIST ' LAM p2 STO
                 ;
                 LAM p2 LAM m #1- NTHCOMPDROP ' LAM y STO
-                LAM y %0<> case ::           (case II.2.ii.a)
+                LAM y %0<> case ::           (type II.2.ii.a)
                     %1 DUP LAM m LAM p1 PUTLIST LAM m #1+ SWAP PUTLIST ' LAM p1 STO
                     %8 LAM y %1- DUP
                     LAM m #1- LAM p2 PUTLIST LAM m #1+ SWAP PUTLIST LAM m SWAP PUTLIST  ' LAM p2 STO
                     LAM p3 LAM m #1- NTHCOMPDROP %1+ DUP
                     LAM m LAM p3 PUTLIST LAM m #1- SWAP PUTLIST ' LAM p3 STO
                 ;
-                LAM z %0<> case ::          (case II.2.ii.b)
+                LAM z %0<> case ::          (type II.2.ii.b)
                     %1 DUPDUP LAM m #1+ LAM p2 PUTLIST LAM m SWAP PUTLIST LAM m #1- SWAP PUTLIST ' LAM p2 STO
                     LAM p3 LAM m #1- NTHCOMPDROP %1- DUP
                     LAM m LAM p3 PUTLIST LAM m #1- SWAP PUTLIST ' LAM p3 STO
                 ;
-                LAM c LAM m #1- NTHCOMPDROP %0<> case ::  (normal case II.2.ii.c)
+                LAM c LAM m #1- NTHCOMPDROP %0<> case ::  (type II.2.ii.c when >6-digit number)
                     %1 DUP
                     LAM p1 LAM m #1- NTHCOMPDROP %1- DUP
                     LAM m #1- LAM p1 PUTLIST LAM m #2+ SWAP PUTLIST
@@ -91,7 +91,7 @@
                     LAM m #1- LAM p2 PUTLIST LAM m #1+ SWAP PUTLIST LAM m SWAP PUTLIST ' LAM p2 STO
                     %2 DUP LAM m LAM p3 PUTLIST LAM m #1- SWAP PUTLIST ' LAM p3 STO
                 ;
-                (case II.2.ii.c called from Sml6)
+                (type II.2.ii.c called from Sml6 for 6-digit numbers)
                 LAM p1 BINT2 NTHCOMPDROP %0<> case ::
                     %9 DUP
                     LAM p1 BINT2 NTHCOMPDROP %1- DUP
@@ -119,7 +119,7 @@
                 { %1 %1 } ' LAM p2 STO
                 { %6 } ' LAM p3 STO
             ;
-            LAM ci %2 %= case ::            (case II.3)
+            LAM ci %2 %= case ::            (type II.3)
                 %1 DUP LAM m #1+ LAM p1 PUTLIST LAM m SWAP PUTLIST ' LAM p1 STO
                 %8 LAM p2 LAM m #1- NTHCOMPDROP %1- DUP
                 LAM m #1- LAM p2 PUTLIST LAM m #1+ SWAP PUTLIST LAM m SWAP PUTLIST ' LAM p2 STO
