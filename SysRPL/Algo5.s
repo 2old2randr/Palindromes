@@ -53,7 +53,7 @@
                 ITE
                 ::
                     (use B1 setup)
-                    %1 DUP BINT1 LAM PUTLIST LAM n SWAP PUTLIST
+                    %1 DUP BINT1 LAM p1 PUTLIST LAM n SWAP PUTLIST
                     LAM d2 DUP ROT BINT2 SWAP PUTLIST
                     LAM n #1- SWAP PUTLIST ' LAM p1 STO
                     LAM d3 %1- DUP
@@ -63,7 +63,7 @@
                 ;
                 ::
                     (use B2 setup)
-                    %1 DUP BINT1 LAM PUTLIST LAM n SWAP PUTLIST
+                    %1 DUP BINT1 LAM p1 PUTLIST LAM n SWAP PUTLIST
                     LAM d2 DUP ROT BINT2 SWAP PUTLIST
                     LAM n #1- SWAP PUTLIST ' LAM p1 STO
                     LAM d3 %2- DUP
