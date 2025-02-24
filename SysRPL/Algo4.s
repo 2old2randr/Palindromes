@@ -122,7 +122,7 @@
                             %1 DUP LAM m #1+ LAM p1 PUTLIST LAM m SWAP PUTLIST ' LAM p1 STO
                             %9 DUP
                             LAM p2 LAM m NTHCOMPDROP %1- DUP
-                            LAM m LAM p2 PUTLIST LAM m #- SWAP PUTLIST
+                            LAM m LAM p2 PUTLIST LAM m #1- SWAP PUTLIST
                             LAM m #1+ SWAP PUTLIST LAM m #2- SWAP PUTLIST ' LAM p2 STO
                             LAM p3 LAM m NTHCOMPDROP %1+ DUP
                             LAM m LAM p3 PUTLIST LAM m #2- SWAP PUTLIST
