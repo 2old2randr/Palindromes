@@ -184,15 +184,15 @@
                 case ::                      (case  IV.4.ii)
                     LAM p2 LAM m #2- NTHCOMPDROP %0<>
                     ITE
-                        ::                     (case IV.4.ii.a)
-                            LAM p2 LAM m #1+ NTHCOMPDROP %1- DUP
-                            LAM m #1+ LAM p2 PUTLIST LAM m #2- SWAP PUTLIST ' LAM p2 STO
-                        ;
-                        ::                      (case IV.4.ii.b)
-                            LAM p1 LAM m #1- NTHCOMPDROP %1- DUP
-                            LAM m #2+ LAM p1 PUTLIST LAM m #1- SWAP PUTLIST ' LAM p1 STO
-                            %9 DUP LAM m #1+ LAM p2 PUTLIST LAM m #2- SWAP PUTLIST ' LAM p2 STO
-                        ;
+                    ::                     (case IV.4.ii.a)
+                        LAM p2 LAM m #1+ NTHCOMPDROP %1- DUP
+                        LAM m #1+ LAM p2 PUTLIST LAM m #2- SWAP PUTLIST ' LAM p2 STO
+                    ;
+                    ::                      (case IV.4.ii.b)
+                        LAM p1 LAM m #1- NTHCOMPDROP %1- DUP
+                        LAM m #2+ LAM p1 PUTLIST LAM m #1- SWAP PUTLIST ' LAM p1 STO
+                        %9 DUP LAM m #1+ LAM p2 PUTLIST LAM m #2- SWAP PUTLIST ' LAM p2 STO
+                    ;
                     (common to .a and .b)
                     %1 DUP LAM m LAM p1 PUTLIST LAM m #1+ SWAP PUTLIST ' LAM p1 STO
                     LAM p2 LAM m NTHCOMPDROP %2- DUP
@@ -206,15 +206,15 @@
                 case ::                      (case IV.4.iii.a)
                     LAM p2 LAM m #2- NTHCOMPDROP %9 %<>
                     ITE
-                        ::              (case IV.4.iii.a.1)
-                            LAM p1 LAM m #2+ NTHCOMPDROP %1- DUP
-                            LAM m #2+ LAM p1 PUTLIST LAM m #1- SWAP PUTLIST ' LAM p1 STO
-                            LAM p2 LAM m #1+ NTHCOMPDROP %1+ DUP
-                            LAM m #1+ LAM p2 PUTLIST LAM m #2- SWAP PUTLIST ' LAM p2 STO
-                        ;
-                        ::                    (case IV.4.iii.a.2)
-                            %0 DUP LAM m #1+ LAM p2 PUTLIST LAM m #2- SWAP PUTLIST ' LAM p2 STO
-                        ;
+                    ::              (case IV.4.iii.a.1)
+                        LAM p1 LAM m #2+ NTHCOMPDROP %1- DUP
+                        LAM m #2+ LAM p1 PUTLIST LAM m #1- SWAP PUTLIST ' LAM p1 STO
+                        LAM p2 LAM m #1+ NTHCOMPDROP %1+ DUP
+                        LAM m #1+ LAM p2 PUTLIST LAM m #2- SWAP PUTLIST ' LAM p2 STO
+                    ;
+                    ::                    (case IV.4.iii.a.2)
+                        %0 DUP LAM m #1+ LAM p2 PUTLIST LAM m #2- SWAP PUTLIST ' LAM p2 STO
+                    ;
                     (common to .1 and .2)
                     %8 DUP LAM m #1+ LAM p1 PUTLIST LAM m SWAP PUTLIST ' LAM p1 STO
                     LAM p2 LAM m NTHCOMPDROP %2 %+ DUP
@@ -225,15 +225,15 @@
                 (case IV.4.iii.b)
                 LAM p2 LAM m #1- NTHCOMPDROP %7 %>
                 ITE
-                    ::                        (case IV.4.iii.b.1)
-                        LAM p2 LAM m #1+ NTHCOMPDROP %1- DUP
-                        LAM m #1+ LAM p2 PUTLIST LAM m #2- SWAP PUTLIST ' LAM p2 STO
-                    ;
-                    ::                      (case IV.4.iii.b.2)
-                        LAM p1 LAM m #2+ NTHCOMPDROP %1- DUP
-                        LAM m #2+ LAM p1 PUTLIST LAM m #1- SWAP PUTLIST ' LAM p1 STO
-                        %9 DUP LAM m #1+ LAM p2 PUTLIST LAM m #2- SWAP PUTLIST ' LAM p2 STO
-                    ;
+                ::                        (case IV.4.iii.b.1)
+                    LAM p2 LAM m #1+ NTHCOMPDROP %1- DUP
+                    LAM m #1+ LAM p2 PUTLIST LAM m #2- SWAP PUTLIST ' LAM p2 STO
+                ;
+                ::                      (case IV.4.iii.b.2)
+                    LAM p1 LAM m #2+ NTHCOMPDROP %1- DUP
+                    LAM m #2+ LAM p1 PUTLIST LAM m #1- SWAP PUTLIST ' LAM p1 STO
+                    %9 DUP LAM m #1+ LAM p2 PUTLIST LAM m #2- SWAP PUTLIST ' LAM p2 STO
+                ;
                 (common to .1 and .2)
                 %2 DUP LAM m #1+ LAM p1 PUTLIST LAM m SWAP PUTLIST ' LAM p1 STO
                 LAM p2 LAM m NTHCOMPDROP %3 %- DUP

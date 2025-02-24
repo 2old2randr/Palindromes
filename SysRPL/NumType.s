@@ -239,17 +239,17 @@
         BINT2 #/ SWAP
         #0<>
         ITE
-            ::
-                DROP (quotient)
-                FALSE (not special)
-            ;
-            ::
-                (special if either digit at len/2 is zero)
-                DUP
-                LAM d SWAP NTHCOMPDROP %0=
-                SWAP LAM d SWAP #1+ NTHCOMPDROP %0=
-                OR
-            ;
+        ::
+            DROP (quotient)
+            FALSE (not special)
+        ;
+        ::
+            (special if either digit at len/2 is zero)
+            DUP
+            LAM d SWAP NTHCOMPDROP %0=
+            SWAP LAM d SWAP #1+ NTHCOMPDROP %0=
+            OR
+        ;
         LAM d INNERCOMP reversym {}N (input list reversed)
         LAM p1
         LAM p2 ID CmpLst

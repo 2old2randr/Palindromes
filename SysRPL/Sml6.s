@@ -14,10 +14,9 @@
                 (six digit numbers other than those beginning with '1')
                 (can be solved by Algorithm 2)
                 LAM d ID NumType
-                { NULLLAM NULLLAM NULLLAM NULLLAM NULLLAM NULLLAM }
-                BIND
-                4GETLAM 3GETLAM 2GETLAM 1GETLAM ID Algo2
-                ABND
+                (remove levels 5 and 6 - levels 1-4 are inputs to Algo2)
+                SIX ROLL SIX ROLL 2DROP
+                ID Algo2
             ;
             LAM d INNERCOMP DROP
             { LAM d5 LAM d4 LAM d3 LAM d2 LAM d1 LAM d0 }
@@ -52,13 +51,13 @@
                     %10 LAM d2 %+ LAM c %- LAM m1 %- ' LAM x STO
                     LAM x %9 %>
                     ITE
-                        ::
-                            %900 LAM p1 %+ ' LAM p1 STO
-                            LAM x %9 %- %100 %* LAM p2 %+ ' LAM p2 STO
-                        ;
-                        ::
-                            LAM x %100 %* LAM p1 %+ ' LAM p1 STO
-                        ;
+                    ::
+                        %900 LAM p1 %+ ' LAM p1 STO
+                        LAM x %9 %- %100 %* LAM p2 %+ ' LAM p2 STO
+                    ;
+                    ::
+                        LAM x %100 %* LAM p1 %+ ' LAM p1 STO
+                    ;
                 ;
                 LAM m2 %0= LAM d2 %0<> AND
                 case ::                (case ii)
@@ -79,13 +78,13 @@
                     %10 LAM d2 %+ LAM c %- %9 %- ' LAM x STO
                     LAM x %9 %>
                     ITE
-                        ::
-                            %900 LAM p1 %+ ' LAM p1 STO
-                            LAM x %9 %- %100 %* LAM p2 %+ ' LAM p2 STO
-                        ;
-                        ::
-                            LAM x %100 %* LAM p1 %+ ' LAM p1 STO
-                        ;
+                    ::
+                        %900 LAM p1 %+ ' LAM p1 STO
+                        LAM x %9 %- %100 %* LAM p2 %+ ' LAM p2 STO
+                    ;
+                    ::
+                        LAM x %100 %* LAM p1 %+ ' LAM p1 STO
+                    ;
                 ;
                 LAM m2 %0= LAM d2 %0= AND
                 case ::               (case iii)
@@ -102,13 +101,13 @@
                         %10 LAM c %- LAM z %- ' LAM x STO
                         LAM x %9 %>
                         ITE
-                            ::
-                                %900 LAM p1 %+ ' LAM p1 STO
-                                LAM x %9 %- %100 %* LAM p2 %+ ' LAM p2 STO
-                            ;
-                            ::
-                                LAM x %100 %* LAM p1 %+ ' LAM p1 STO
-                            ;
+                        ::
+                            %900 LAM p1 %+ ' LAM p1 STO
+                            LAM x %9 %- %100 %* LAM p2 %+ ' LAM p2 STO
+                        ;
+                        ::
+                            LAM x %100 %* LAM p1 %+ ' LAM p1 STO
+                        ;
                     ;
                     LAM d4 %2 %=
                     case ::                 (case iii.c)
@@ -122,23 +121,23 @@
                         %2 LAM d3 %+ LAM z %+ %10 %/ %IP ' LAM c STO
                         LAM c %2 %<>
                         ITE
+                        ::
+                            %10 LAM c %- LAM z %- ' LAM x STO
+                            LAM x %9 %>
+                            ITE
                             ::
-                                %10 LAM c %- LAM z %- ' LAM x STO
-                                LAM x %9 %>
-                                ITE
-                                    ::
-                                        %900 LAM p1 %+ ' LAM p1 STO
-                                        LAM x %9 %- %100 %* LAM p2 %+ ' LAM p2 STO
-                                    ;
-                                    ::
-                                        LAM x %100 %* LAM p1 %+ ' LAM p1 STO
-                                    ;
+                                %900 LAM p1 %+ ' LAM p1 STO
+                                LAM x %9 %- %100 %* LAM p2 %+ ' LAM p2 STO
                             ;
                             ::
-                                %128821 ' LAM p1 STO
-                                %171 ' LAM p2 STO
-                                %8 ' LAM p3 STO
+                                LAM x %100 %* LAM p1 %+ ' LAM p1 STO
                             ;
+                        ;
+                        ::
+                            %128821 ' LAM p1 STO
+                            %171 ' LAM p2 STO
+                            %8 ' LAM p3 STO
+                        ;
                     ;
                     (case iii.d)
                     LAM d3 %1 %- %10 %MOD %1+ LAM d3 %- %10 %/ %IP ' LAM c STO      (c4)
@@ -174,13 +173,13 @@
                         LAM d2 %1+ LAM c %- ' LAM x STO
                         LAM x %9 %>
                         ITE
-                            ::
-                                %900 LAM p1 %+ ' LAM p1 STO
-                                LAM x %9 %- %100 %* LAM p2 %+ ' LAM p2 STO
-                            ;
-                            ::
-                                LAM x %100 %* LAM p1 %+ ' LAM p1 STO
-                            ;
+                        ::
+                            %900 LAM p1 %+ ' LAM p1 STO
+                            LAM x %9 %- %100 %* LAM p2 %+ ' LAM p2 STO
+                        ;
+                        ::
+                            LAM x %100 %* LAM p1 %+ ' LAM p1 STO
+                        ;
                     ;
                     0 0 0 0
                     { LAM c1 LAM c2 LAM c3 LAM mu } (temp vars)
@@ -312,18 +311,18 @@
                             %120021 ' LAM p1 STO
                             LAM d1 %3 %<>
                             ITE
-                                ::
-                                    LAM d1 %3 %- %11 %*
-                                    %13 LAM d1 %-
-                                    2DUP
-                                    %< IT SWAP
-                                    ' LAM p3 STO
-                                    ' LAM p2 STO
-                                ;
-                                ::
-                                    %9 ' LAM p2 STO
-                                    %1 ' LAM p3 STO
-                                ;
+                            ::
+                                LAM d1 %3 %- %11 %*
+                                %13 LAM d1 %-
+                                2DUP
+                                %< IT SWAP
+                                ' LAM p3 STO
+                                ' LAM p2 STO
+                            ;
+                            ::
+                                %9 ' LAM p2 STO
+                                %1 ' LAM p3 STO
+                            ;
                         ;
                         LAM d2 %0= LAM d1 %2 %= AND
                         case ::

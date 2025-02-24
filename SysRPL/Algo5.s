@@ -51,25 +51,25 @@
                 BIND
                 LAM dn LAM d3 %- %10 %MOD %0<>
                 ITE
-                    ::
-                        (use B1 setup)
-                        %1 DUP BINT1 LAM PUTLIST LAM n SWAP PUTLIST
-                        LAM d2 DUP ROT BINT2 SWAP PUTLIST
-                        LAM n #1- SWAP PUTLIST ' LAM p1 STO
-                        LAM d3 %1- DUP
-                        BINT3 LAM p2 PUTLIST LAM n SWAP PUTLIST ' LAM p2 STO
-                        LAM dn LAM d3 %- %10 %MOD DUP
-                        BINT4 LAM p3 PUTLIST LAM n SWAP PUTLIST ' LAM p3 STO
-                    ;
-                    ::
-                        (use B2 setup)
-                        %1 DUP BINT1 LAM PUTLIST LAM n SWAP PUTLIST
-                        LAM d2 DUP ROT BINT2 SWAP PUTLIST
-                        LAM n #1- SWAP PUTLIST ' LAM p1 STO
-                        LAM d3 %2- DUP
-                        BINT3 LAM p2 PUTLIST LAM n SWAP PUTLIST ' LAM p2 STO
-                        %1 DUP BINT4 LAM p3 PUTLIST LAM n SWAP PUTLIST ' LAM p3 STO
-                    ;
+                ::
+                    (use B1 setup)
+                    %1 DUP BINT1 LAM PUTLIST LAM n SWAP PUTLIST
+                    LAM d2 DUP ROT BINT2 SWAP PUTLIST
+                    LAM n #1- SWAP PUTLIST ' LAM p1 STO
+                    LAM d3 %1- DUP
+                    BINT3 LAM p2 PUTLIST LAM n SWAP PUTLIST ' LAM p2 STO
+                    LAM dn LAM d3 %- %10 %MOD DUP
+                    BINT4 LAM p3 PUTLIST LAM n SWAP PUTLIST ' LAM p3 STO
+                ;
+                ::
+                    (use B2 setup)
+                    %1 DUP BINT1 LAM PUTLIST LAM n SWAP PUTLIST
+                    LAM d2 DUP ROT BINT2 SWAP PUTLIST
+                    LAM n #1- SWAP PUTLIST ' LAM p1 STO
+                    LAM d3 %2- DUP
+                    BINT3 LAM p2 PUTLIST LAM n SWAP PUTLIST ' LAM p2 STO
+                    %1 DUP BINT4 LAM p3 PUTLIST LAM n SWAP PUTLIST ' LAM p3 STO
+                ;
                 (remove leading zeros)
                 LAM p1 ID CmpLst ' LAM p1 STO
                 LAM p2 ID CmpLst ' LAM p2 STO
