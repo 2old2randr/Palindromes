@@ -70,6 +70,7 @@
             (Adjust middle digits if carry in m is 0 or 2)
             LAM x LAM y %+ LAM z %+ LAM ci %+ %10 %/ %IP ' LAM ci STO
             LAM ci %0= case ::                (type III.2)
+                %1 LAM m #1+ LAM p1 PUTLIST ' LAM p1 STO
             ;
             LAM ci %2 %= case ::
                 LAM p2 LAM m #1- NTHCOMPDROP ' LAM y STO
