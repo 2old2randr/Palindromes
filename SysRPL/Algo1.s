@@ -79,12 +79,12 @@
                 LAM m LAM p3 GETATELN DROP %9 %=
                 case ::                                     (type I.3.i)
                     LAM p1 %1 LAM m+1 PUTEL ' LAM p1 STO
-                    LAM m LAM p2 GETATELN DROP %1- DUPDUP
+                    LAM m LAM p2 GETATELN DROP %1- DUP
                     LAM p2 SWAP LAM m+1 PUTEL SWAP LAM m PUTEL ' LAM p2 STO
                     LAM p3 %0 LAM m PUTEL ' LAM p3 STO
                 ;
                 (type I.3.ii)
-                LAM m LAM p2 GETATELN DROP %1- DUPDUP
+                LAM m LAM p2 GETATELN DROP %1- DUP
                 LAM p2 SWAP LAM m+1 PUTEL SWAP LAM m PUTEL ' LAM p2 STO
                 LAM m LAM p3 GETATELN DROP %1+ LAM p3 SWAP LAM m PUTEL ' LAM p3 STO
             ;
