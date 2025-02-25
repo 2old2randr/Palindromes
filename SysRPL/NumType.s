@@ -211,10 +211,11 @@
             SWAP LAM d SWAP #1+ NTHCOMPDROP %0=
             OR
         ;
-        LAM d INNERCOMP reversym {}N (input list reversed)
-        LAM p1
-        LAM p2 ID CmpLst
-        LAM p3 ID CmpLst
+        (All lists are converted to arrays for further processing)
+        LAM d xREVLIST INNERCOMP UNCOERCE ONE{}N FPTR2 ^XEQ>ARRY
+        LAM p1 INNERCOMP UNCOERCE ONE{}N FPTR2 ^XEQ>ARRY
+        LAM p2 ID CmpLst INNERCOMP UNCOERCE ONE{}N FPTR2 ^XEQ>ARRY
+        LAM p3 ID CmpLst INNERCOMP UNCOERCE ONE{}N FPTR2 ^XEQ>ARRY
 
         ABND (local fns)
         ABND (d1, d2, d3, dn)

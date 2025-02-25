@@ -35,18 +35,17 @@
         { LAM s2s LAM type LAM special LAM d LAM p1 LAM p2 LAM p3 }
         BIND
         ::
-            LAM p1 LENCOMP #2 #/ DROP #0<>      (odd no. of digits)
+            LAM p1 FPTR2 ^ARSIZE #2 #/ DROP #0<>      (odd no. of digits)
             case ::
                 (p1 p2 p3 need to be changed as if the number was classified as B1 or B2)
-                LAM d xREVLIST ' LAM d STO
-                LAM d LENCOMP
+                LAM d FPTR2 ^ARSIZE
                 { LAM n }
                 BIND
-                LAM d BINT2 NTHCOMPDROP
-                LAM d BINT3 NTHCOMPDROP
-                LAM d LAM n NTHCOMPDROP
+                LAM n #1- LAM d GETATELN DROP   (2nd digit)
+                LAM n #2- LAM d GETATELN DROP   (3rd digit)
+                BINT1 LAM d GETATELN DROP       (leftmost digit)
                 %0 LAM n NDUPN {}N
-                3 NDUPN DROP
+                3 NDUPN DROP                    (new p1, p2, p3 as lists not arrays)
                 { LAM d2 LAM d3 LAM dn LAM p1 LAM p2 LAM p3 }
                 BIND
                 LAM dn LAM d3 %- %10 %MOD %0<>
@@ -70,20 +69,22 @@
                     BINT3 LAM p2 PUTLIST LAM n SWAP PUTLIST ' LAM p2 STO
                     %1 DUP BINT4 LAM p3 PUTLIST LAM n SWAP PUTLIST ' LAM p3 STO
                 ;
-                (remove leading zeros)
-                LAM p1 ID CmpLst ' LAM p1 STO
-                LAM p2 ID CmpLst ' LAM p2 STO
-                LAM p3 ID CmpLst ' LAM p3 STO
+                (setup inputs to algo)
+                LAM d
+                (remove leading zeros and convert to arrays)
+                LAM p1 ID CmpLst INNERCOMP UNCOERCE ONE{}N FPTR2 ^XEQ>ARRY
+                LAM p2 ID CmpLst INNERCOMP UNCOERCE ONE{}N FPTR2 ^XEQ>ARRY
+                LAM p3 ID CmpLst INNERCOMP UNCOERCE ONE{}N FPTR2 ^XEQ>ARRY
                 (and solve using Algorithm 4)
-                LAM d xREVLIST LAM p1 LAM p2 LAM p3 ID Algo4
+                ID Algo4
                 ABND
                 ABND
             ;
-            LAM type #A7 #<                     (type A)
+            LAM type #A7 #<         (type A with even no. of digits - use Algorithm 2)
             case ::
                 LAM d LAM p1 LAM p2 LAM p3 ID Algo2
             ;
-            (type B)
+            (type B with even number of digits - use Algorithm 4)
             LAM d LAM p1 LAM p2 LAM p3 ID Algo4
         ;
         (Correct p1 by adjustment to num i.e., s or 2s)
