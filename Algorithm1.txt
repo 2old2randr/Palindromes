@@ -47,11 +47,11 @@
             ELSE IF c m GET 2 == THEN
                 IF p3 m GET 9 == THEN        @ I.3.i
                     'p1' m 1 + 1 PUT
-                    p2 m GET 1 - DUPDUP
+                    p2 m GET 1 - DUP
                     p2 m 1 + ROT PUT m ROT PUT 'p2' STO
                     'p3' m 0 PUT
                 ELSE                         @ I.3.ii
-                    p2 m GET 1 - DUPDUP
+                    p2 m GET 1 - DUP
                     p2 m 1 + ROT PUT m ROT PUT 'p2' STO
                     'p3' m p3 m GET 1 + PUT
                 END
