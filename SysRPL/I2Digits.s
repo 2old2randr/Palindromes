@@ -5,16 +5,35 @@
 * number --> list
 
 ::
-    CK1&Dispatch
-    #FF ::
-        FPTR2 ^ZABS     (ensure positive)
-        ROMPTR 58F 68
-    ;
-    BINT1 ::
-        %ABS %0 RNDXY   (ensure positive integer)
+    CK1
+    DUPTYPEREAL? IT ::
+        %IP         (ensure the real is an integer)
         FPTR2 ^R>Z
-        ROMPTR 58F 68
     ;
+    DUPTYPEZINT? NcaseTYPEERR
+    FPTR2 ^ZABS
+
+    DUP
+    ZINT 0
+    Z= casedrop ::
+        %0
+        ONE{}N
+    ;
+
+    BINT0
+    SWAP
+    FPTR2 ^Z>S
+    BEGIN
+        DUPNULL$? NOT
+    WHILE ::
+        DUP
+        CAR$ CHR># BINT48 #- UNCOERCE   (digit)
+        ROT #1+                         (digit count)
+        ROT CDR$                        (rest of digits)
+    ;
+    REPEAT
+    DROP
+    {}N
 ;
 
 @
