@@ -71,8 +71,9 @@
             LAM m LAM d GETATELN DROP LAM z %- LAM ci %- %10 %MOD DUP ' LAM y STO
             LAM p2 SWAP LAM m PUTEL ' LAM p2 STO
             (Adjust center digits if the carry in m is 0 or 2)
-            LAM y LAM z %+ LAM ci %+ %10 %/ %IP ' LAM ci STO
-            LAM ci %0= case ::
+            LAM y LAM z %+ LAM ci %+ %10 %/ %IP
+            DUP
+            %0= casedrop ::
                 LAM y %0<> case ::          (type II.2.i)
                     %1 DUP LAM p1 SWAP LAM m PUTEL SWAP LAM m+1 PUTEL ' LAM p1 STO
                     LAM p2 LAM y %1- LAM m PUTEL ' LAM p2 STO
@@ -127,7 +128,7 @@
                 %1 %1 { %2 } FPTR2 ^XEQ>ARRY ' LAM p2 STO
                 %6 { %1 } FPTR2 ^XEQ>ARRY ' LAM p3 STO
             ;
-            LAM ci %2 %= case ::            (type II.3)
+            %2 %= case ::            (type II.3)
                 %1 DUP LAM p1 SWAP LAM m+1 PUTEL SWAP LAM m PUTEL ' LAM p1 STO
                 %8 LAM m-1 LAM p2 GETATELN DROP %1- DUP
                 LAM p2 SWAP LAM m-1 PUTEL SWAP LAM m+1 PUTEL SWAP LAM m PUTEL ' LAM p2 STO
