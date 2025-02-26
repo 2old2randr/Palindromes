@@ -75,11 +75,12 @@
             LAM m LAM d GETATELN DROP LAM z %- LAM x %- LAM ci %- %10 %MOD DUP ' LAM y STO
             LAM p2 SWAP LAM m PUTEL ' LAM p2 STO
             (Adjust middle digits if carry in m is 0 or 2)
-            LAM x LAM y %+ LAM z %+ LAM ci %+ %10 %/ %IP ' LAM ci STO
-            LAM ci %0= case ::                (type III.2)
+            LAM x LAM y %+ LAM z %+ LAM ci %+ %10 %/ %IP
+            DUP
+            %0= casedrop ::                (type III.2)
                 LAM p1 %1 LAM m+1 PUTEL ' LAM p1 STO
             ;
-            LAM ci %2 %= case ::
+            %2 %= case ::
                 LAM m-1 LAM p2 GETATELN DROP ' LAM y STO
                 LAM m-1 LAM p3 GETATELN DROP ' LAM z STO
                 LAM y %0<> LAM z %9 %<> ANDcase ::      (type III.3.i)
