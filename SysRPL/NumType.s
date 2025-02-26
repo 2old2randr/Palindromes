@@ -69,8 +69,7 @@
                 #A3
                 LAM p1 LAM d1 %1- BINT1 LAM n LAM SaveInList EVAL ' LAM p1 STO
                 LAM p2 %9 BINT2 LAM n LAM SaveInList EVAL ' LAM p2 STO
-                LAM p3
-                    LAM dn LAM d1 %- %2 %+ %10 %MOD
+                LAM p3 LAM dn LAM d1 %- %2 %+ %10 %MOD
                     BINT3 LAM n LAM SaveInList EVAL ' LAM p3 STO
             ;
             LAM d2 %2 %<=
@@ -98,11 +97,10 @@
             LAM d3 %2 %<= AND
             LAM dn LAM d3 %- %10 %MOD %0=
             ANDcase :: (A6)
-                #A5
+                #A6
                 LAM p1 %9 BINT2 LAM n LAM SaveInList EVAL ' LAM p1 STO
-                LAM p2 LAM d3 %1+ BINT3 LAM n LAM SaveInList EVAL ' LAM p2 STO
-                LAM p3 LAM dn LAM d3 %- %10 %MOD
-                    BINT4 LAM n LAM SaveInList EVAL ' LAM p3 STO
+                LAM p2 LAM d3 %2 %+ BINT3 LAM n LAM SaveInList EVAL ' LAM p2 STO
+                LAM p3 %9 BINT4 LAM n LAM SaveInList EVAL ' LAM p3 STO
             ;
             LAM d1 %1 %=
             LAM d2 %2 %<= AND
@@ -110,8 +108,9 @@
             LAM dn LAM d3 %- %10 %MOD %0<>
             ANDcase :: (B1)
                 #B1
-                LAM p1 %1 BINT1 LAM n LAM SaveInList EVAL ' LAM p1 STO
-                LAM p1 LAM d2 BINT2 LAM n #1- LAM SaveInList EVAL ' LAM p1 STO
+                (insert two i.e., four digits in p1)
+                LAM p1 %1 BINT1 LAM n LAM SaveInList EVAL
+                    LAM d2 BINT2 LAM n #1- LAM SaveInList EVAL ' LAM p1 STO
                 LAM p2 LAM d3 %1- BINT3 LAM n LAM SaveInList EVAL ' LAM p2 STO
                 LAM p3 LAM dn LAM d3 %- %10 %MOD
                     BINT4 LAM n LAM SaveInList EVAL ' LAM p3 STO
@@ -122,8 +121,9 @@
             LAM dn LAM d3 %- %10 %MOD %0=
             ANDcase :: (B2)
                 #B2
-                LAM p1 %1 BINT1 LAM n LAM SaveInList EVAL ' LAM p1 STO
-                LAM p1 LAM d2 BINT2 LAM n #1- LAM SaveInList EVAL ' LAM p1 STO
+                (insert two i.e., four digits in p1)
+                LAM p1 %1 BINT1 LAM n LAM SaveInList EVAL
+                    LAM d2 BINT2 LAM n #1- LAM SaveInList EVAL ' LAM p1 STO
                 LAM p2 LAM d3 %2 %- BINT3 LAM n LAM SaveInList EVAL ' LAM p2 STO
                 LAM p3 %1 BINT4 LAM n LAM SaveInList EVAL ' LAM p3 STO
             ;
@@ -134,8 +134,9 @@
             LAM dn %0=
             ANDcase :: (B3)
                 #B3
-                LAM p1 %1 BINT1 LAM n LAM SaveInList EVAL ' LAM p1 STO
-                LAM p1 LAM d2 %1- BINT2 LAM n #1- LAM SaveInList EVAL ' LAM p1 STO
+                (insert two i.e., four digits in p1)
+                LAM p1 %1 BINT1 LAM n LAM SaveInList EVAL
+                    LAM d2 %1- BINT2 LAM n #1- LAM SaveInList EVAL ' LAM p1 STO
                 LAM p2 %8 BINT3 LAM n LAM SaveInList EVAL ' LAM p2 STO
                 LAM p3 %1 BINT4 LAM n LAM SaveInList EVAL ' LAM p3 STO
             ;
@@ -147,8 +148,9 @@
             LAM dn %0=
             ANDcase :: (B4)
                 #B4
-                LAM p1 %1 BINT1 LAM n LAM SaveInList EVAL ' LAM p1 STO
-                LAM p1 LAM d2 BINT2 LAM n #1- LAM SaveInList EVAL ' LAM p1 STO
+                (insert two i.e., four digits in p1)
+                LAM p1 %1 BINT1 LAM n LAM SaveInList EVAL
+                    LAM d2 BINT2 LAM n #1- LAM SaveInList EVAL ' LAM p1 STO
                 LAM p2 %1 BINT3 LAM n LAM SaveInList EVAL ' LAM p2 STO
                 LAM p3 %8 BINT4 LAM n LAM SaveInList EVAL ' LAM p3 STO
             ;
@@ -159,8 +161,9 @@
             LAM dn %0<>
             ANDcase :: (B5)
                 #B5
-                LAM p1 %1 BINT1 LAM n LAM SaveInList EVAL ' LAM p1 STO
-                LAM p1 LAM d2 %1- BINT2 LAM n #1- LAM SaveInList EVAL ' LAM p1 STO
+                (insert two i.e., four digits in p1)
+                LAM p1 %1 BINT1 LAM n LAM SaveInList EVAL
+                    LAM d2 %1- BINT2 LAM n #1- LAM SaveInList EVAL ' LAM p1 STO
                 LAM p2 %9 BINT3 LAM n LAM SaveInList EVAL ' LAM p2 STO
                 LAM p3 LAM dn BINT4 LAM n LAM SaveInList EVAL ' LAM p3 STO
             ;
@@ -171,8 +174,9 @@
             LAM dn %3 %- %10 %MOD %0<>
             ANDcase :: (B6)
                 #B6
-                LAM p1 %1 BINT1 LAM n LAM SaveInList EVAL ' LAM p1 STO
-                LAM p1 LAM d2 BINT2 LAM n #1- LAM SaveInList EVAL ' LAM p1 STO
+                (insert two i.e., four digits in p1)
+                LAM p1 %1 BINT1 LAM n LAM SaveInList EVAL
+                    LAM d2 BINT2 LAM n #1- LAM SaveInList EVAL ' LAM p1 STO
                 LAM p2 %2 BINT3 LAM n LAM SaveInList EVAL ' LAM p2 STO
                 LAM p3 LAM dn %3 %- %10 %MOD
                     BINT4 LAM n LAM SaveInList EVAL ' LAM p3 STO
@@ -184,8 +188,9 @@
             LAM dn %3 %=
             ANDcase :: (B7)
                 #B7
-                LAM p1 %1 BINT1 LAM n LAM SaveInList EVAL ' LAM p1 STO
-                LAM p1 LAM d2 BINT2 LAM n #1- LAM SaveInList EVAL ' LAM p1 STO
+                (insert two i.e., four digits in p1)
+                LAM p1 %1 BINT1 LAM n LAM SaveInList EVAL
+                    LAM d2 BINT2 LAM n #1- LAM SaveInList EVAL ' LAM p1 STO
                 LAM p2 %1 BINT3 LAM n LAM SaveInList EVAL ' LAM p2 STO
                 LAM p3 %1 BINT4 LAM n LAM SaveInList EVAL ' LAM p3 STO
             ;
