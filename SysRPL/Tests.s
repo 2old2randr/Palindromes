@@ -86,8 +86,12 @@
     ZINT 123456789 LAM isCorrectPartition EVAL                  (III.2)
     ZINT 1128097 LAM isCorrectPartition EVAL                    (III.3.iii)
     ZINT 12345678 LAM isCorrectPartition EVAL                   (IV.1)
+    ZINT 12300008 LAM isCorrectPartition EVAL                   (IV.4.i)
     ZINT 106700620371 LAM isCorrectPartition EVAL               (IV.5.i)
+    ZINT 12300007 LAM isCorrectPartition EVAL                   (IV.5.ii)
+    ZINT 12296503 LAM isCorrectPartition EVAL                   (IV.5.iii.a)
     ZINT 126189874318615808 LAM isCorrectPartition EVAL         (IV.5.iv.a)
+    ZINT 12300009 LAM isCorrectPartition EVAL                   (IV.6)
 *    ZINT 84079603496574400839385654909302841671928775176508136511539400366510882879682345079140714467212750577420292 LAM isCorrectPartition EVAL        (I.1)
     
     LAM errCnt #0=
