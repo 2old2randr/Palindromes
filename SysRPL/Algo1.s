@@ -71,19 +71,18 @@
             LAM p1 %0 LAM m+1 PUTEL ' LAM p1 STO
             (adjust if carry in position m is 0 or 2)
             LAM m LAM c GETATELN DROP DUP
-            %0= case ::
-                LAM p1 %1 LAM m+1 PUTEL ' LAM p1 STO    (type I.2)
-                DROP
+            %0= casedrop ::
+                LAM p1 %1 LAM m+1 PUTEL ' LAM p1 STO            (type I.2)
             ;
             %2 %= case ::
                 LAM m LAM p3 GETATELN DROP %9 %=
-                case ::                                     (type I.3.i)
+                case ::                                         (type I.3.i)
                     LAM p1 %1 LAM m+1 PUTEL ' LAM p1 STO
                     LAM m LAM p2 GETATELN DROP %1- DUP
                     LAM p2 SWAP LAM m+1 PUTEL SWAP LAM m PUTEL ' LAM p2 STO
                     LAM p3 %0 LAM m PUTEL ' LAM p3 STO
                 ;
-                (type I.3.ii)
+                                                                (type I.3.ii)
                 LAM m LAM p2 GETATELN DROP %1- DUP
                 LAM p2 SWAP LAM m+1 PUTEL SWAP LAM m PUTEL ' LAM p2 STO
                 LAM m LAM p3 GETATELN DROP %1+ LAM p3 SWAP LAM m PUTEL ' LAM p3 STO

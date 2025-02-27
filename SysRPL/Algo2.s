@@ -74,24 +74,24 @@
             LAM y LAM z %+ LAM ci %+ %10 %/ %IP
             DUP
             %0= casedrop ::
-                LAM y %0<> case ::          (type II.2.i)
+                LAM y %0<> case ::                              (type II.2.i)
                     %1 DUP LAM p1 SWAP LAM m PUTEL SWAP LAM m+1 PUTEL ' LAM p1 STO
                     LAM p2 LAM y %1- LAM m PUTEL ' LAM p2 STO
                 ;
                 LAM m-1 LAM p2 GETATELN DROP ' LAM y STO
-                LAM y %0<> case ::           (type II.2.ii.a)
+                LAM y %0<> case ::                              (type II.2.ii.a)
                     %1 DUP LAM p1 SWAP LAM m PUTEL SWAP LAM m+1 PUTEL ' LAM p1 STO
                     %8 LAM y %1- DUP
                     LAM p2 SWAP LAM m-1 PUTEL SWAP LAM m+1 PUTEL SWAP LAM m PUTEL  ' LAM p2 STO
                     LAM m-1 LAM p3 GETATELN DROP %1+ DUP
                     LAM p3 SWAP LAM m PUTEL SWAP LAM m-1 PUTEL ' LAM p3 STO
                 ;
-                LAM z %0<> case ::          (type II.2.ii.b)
+                LAM z %0<> case ::                              (type II.2.ii.b)
                     %1 DUPDUP LAM p2 SWAP LAM m+1 PUTEL SWAP LAM m PUTEL SWAP LAM m-1 PUTEL ' LAM p2 STO
                     LAM m-1 LAM p3 GETATELN DROP %1- DUP
                     LAM p3 SWAP LAM m PUTEL SWAP LAM m-1 PUTEL ' LAM p3 STO
                 ;
-                LAM m-1 LAM c GETATELN DROP %0<> case ::  (type II.2.ii.c when >6-digit number)
+                LAM m-1 LAM c GETATELN DROP %0<> case ::        (type II.2.ii.c when >6-digit number)
                     %1 DUP
                     LAM m-1 LAM p1 GETATELN DROP %1- DUP
                     LAM p1 SWAP LAM m-1 PUTEL SWAP LAM m #2+ PUTEL
@@ -128,7 +128,7 @@
                 %1 %1 { %2 } FPTR2 ^XEQ>ARRY ' LAM p2 STO
                 %6 { %1 } FPTR2 ^XEQ>ARRY ' LAM p3 STO
             ;
-            %2 %= case ::            (type II.3)
+            %2 %= case ::                                       (type II.3)
                 %1 DUP LAM p1 SWAP LAM m+1 PUTEL SWAP LAM m PUTEL ' LAM p1 STO
                 %8 LAM m-1 LAM p2 GETATELN DROP %1- DUP
                 LAM p2 SWAP LAM m-1 PUTEL SWAP LAM m+1 PUTEL SWAP LAM m PUTEL ' LAM p2 STO

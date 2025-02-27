@@ -85,14 +85,14 @@
 
             LAM m LAM p1 GETATELN DROP LAM m-1 LAM c GETATELN DROP %+ %0=
             LAM m-1 LAM p2 GETATELN DROP %9 %<>
-            ANDcase ::                             (type IV.2)
-                LAM m-1 LAM p3 GETATELN DROP %0<> case ::        (type IV.2.i)
+            ANDcase ::                                                  (type IV.2)
+                LAM m-1 LAM p3 GETATELN DROP %0<> case ::               (type IV.2.i)
                     LAM m LAM p2 GETATELN DROP %1+ DUP
                     LAM p2 SWAP LAM m PUTEL SWAP LAM m-1 PUTEL ' LAM p2 STO
                     LAM m-1 LAM p3 GETATELN DROP %1-
                     LAM p3 SWAP LAM m-1 PUTEL ' LAM p3 STO
                 ;
-                LAM m-2 LAM p2 GETATELN DROP %0<> case ::         (type IV.2.ii)
+                LAM m-2 LAM p2 GETATELN DROP %0<> case ::               (type IV.2.ii)
                     :: (nested secondary to execute common code later)
                         LAM m-1 LAM p2 GETATELN DROP %1 %<>
                         LAM m-2 LAM p3 GETATELN DROP %9 %<>
@@ -104,14 +104,14 @@
                             LAM p3 SWAP LAM m PUTEL SWAP LAM m-2 PUTEL
                             %1 LAM m-1 PUTEL ' LAM p3 STO
                         ;
-                        LAM m-1 LAM p2 GETATELN DROP %1 %<> case ::       (type IV.2.ii.b)
+                        LAM m-1 LAM p2 GETATELN DROP %1 %<> case ::     (type IV.2.ii.b)
                             %2 DUP LAM p1 SWAP LAM m+1 PUTEL SWAP LAM m PUTEL ' LAM p1 STO
                             LAM m LAM p2 GETATELN DROP %2 %- DUP
                             LAM p2 SWAP LAM m PUTEL SWAP LAM m-1 PUTEL ' LAM p2 STO
                             %0 DUP LAM p3 SWAP LAM m PUTEL SWAP LAM m-2 PUTEL
                             %3 LAM m-1 PUTEL ' LAM p3 STO
                         ;
-                        (type IV.2.ii.c)
+                                                                        (type IV.2.ii.c)
                         %1 DUP LAM p1 SWAP LAM m+1 PUTEL SWAP LAM m PUTEL ' LAM p1 STO
                         %9 DUP LAM p2 SWAP LAM m PUTEL SWAP LAM m-1 PUTEL ' LAM p2 STO
                         %0 DUP LAM p3 SWAP LAM m PUTEL SWAP LAM m-2 PUTEL
@@ -123,7 +123,7 @@
                 ;
                 LAM m-1 LAM p3 GETATELN DROP %0=
                 LAM m-2 LAM p2 GETATELN DROP %0=
-                ANDcase ::                         (type IV.2.iii)
+                ANDcase ::                                              (type IV.2.iii)
                     ::
                         LAM m-2 LAM p3 GETATELN DROP %9 %<> case ::     (type IV.2.iii.a)
                             %1 DUP LAM p1 SWAP LAM m+1 PUTEL SWAP LAM m PUTEL ' LAM p1 STO
@@ -144,7 +144,7 @@
                             %0 DUP LAM p3  SWAP LAM m PUTEL SWAP LAM m-2 PUTEL
                             %3 LAM m-1 PUTEL ' LAM p3 STO
                         ;
-                        (type IV.2.iii.c)
+                                                                        (type IV.2.iii.c)
                         %1 DUP LAM p1 SWAP LAM m+1 PUTEL SWAP LAM m PUTEL ' LAM p1 STO
                         %9 FOUR NDUPN DROP
                         LAM p2 SWAP LAM m+1 PUTEL SWAP LAM m PUTEL
@@ -158,7 +158,7 @@
                 ;
             ;
             LAM m LAM p1 GETATELN DROP LAM m-1 LAM c GETATELN DROP %+ %0=
-            case ::                                                    (type IV.3)
+            case ::                                                     (type IV.3)
                 %1 DUP LAM p1 SWAP LAM m+1 PUTEL SWAP LAM m PUTEL ' LAM p1 STO
                 %8 DUP
                 LAM m+1 LAM p2 GETATELN DROP %1- DUP
@@ -170,21 +170,21 @@
             ;
             LAM m LAM p1 GETATELN DROP LAM m-1 LAM c GETATELN DROP %+ %2 %=
             LAM m LAM p1 GETATELN DROP %0=
-            ANDcase ::                               (type IV.4)
-                LAM m-1 LAM p3 GETATELN DROP %9 %<> case ::              (type IV.4.i)
+            ANDcase ::                                                  (type IV.4)
+                LAM m-1 LAM p3 GETATELN DROP %9 %<> case ::             (type IV.4.i)
                     LAM m LAM p2 GETATELN DROP %1- DUP
                     LAM p2 SWAP LAM m PUTEL SWAP LAM m-1 PUTEL ' LAM p2 STO
                     LAM m-1 LAM p3 GETATELN DROP %1+
                     LAM p3 SWAP LAM m-1 PUTEL ' LAM p3 STO
                 ;
-                LAM m-2 LAM p3 GETATELN DROP %9 %<> case ::        (type IV.4.ii)
+                LAM m-2 LAM p3 GETATELN DROP %9 %<> case ::             (type IV.4.ii)
                     LAM m-2 LAM p2 GETATELN DROP %0<>
                     ITE
-                    ::                     (type IV.4.ii.a)
+                    ::                                                  (type IV.4.ii.a)
                         LAM m+1 LAM p2 GETATELN DROP %1- DUP
                         LAM p2 SWAP LAM m+1 PUTEL SWAP LAM m-2 PUTEL ' LAM p2 STO
                     ;
-                    ::                      (type IV.4.ii.b)
+                    ::                                                  (type IV.4.ii.b)
                         LAM m-1 LAM p1 GETATELN DROP %1- DUP
                         LAM p1 SWAP LAM m+2 PUTEL SWAP LAM m-1 PUTEL ' LAM p1 STO
                         %9 DUP LAM p2 SWAP LAM m+1 PUTEL SWAP LAM m-2 PUTEL ' LAM p2 STO
@@ -197,17 +197,17 @@
                     LAM p3 SWAP LAM m PUTEL SWAP LAM m-2 PUTEL
                     %1 LAM m-1 PUTEL ' LAM p3 STO
                 ;
-                (type IV.4.iii)
-                LAM m-1 LAM p2 GETATELN DROP %7 %<= case ::         (type IV.4.iii.a)
+                                                                        (type IV.4.iii)
+                LAM m-1 LAM p2 GETATELN DROP %7 %<= case ::             (type IV.4.iii.a)
                     LAM m-2 LAM p2 GETATELN DROP %9 %<>
                     ITE
-                    ::              (type IV.4.iii.a.1)
+                    ::                                                  (type IV.4.iii.a.1)
                         LAM m+2 LAM p1 GETATELN DROP %1- DUP
                         LAM p1 SWAP LAM m+2 PUTEL SWAP LAM m-1 PUTEL ' LAM p1 STO
                         LAM m+1 LAM p2 GETATELN DROP %1+ DUP
                         LAM p2 SWAP LAM m+1 PUTEL SWAP LAM m-2 PUTEL ' LAM p2 STO
                     ;
-                    ::                    (type IV.4.iii.a.2)
+                    ::                                                  (type IV.4.iii.a.2)
                         %0 DUP LAM p2 SWAP LAM m+1 PUTEL SWAP LAM m-2 PUTEL ' LAM p2 STO
                     ;
                     (common to .1 and .2)
@@ -217,14 +217,14 @@
                     %8 DUPDUP LAM p3 SWAP LAM m PUTEL SWAP LAM m-1 PUTEL
                     SWAP LAM m-2 PUTEL ' LAM p3 STO
                 ;
-                (type IV.4.iii.b)
+                                                                        (type IV.4.iii.b)
                 LAM m-1 LAM p2 GETATELN DROP %7 %>
                 ITE
-                ::                        (type IV.4.iii.b.1)
+                ::                                                      (type IV.4.iii.b.1)
                     LAM m+1 LAM p2 GETATELN DROP %1- DUP
                     LAM p2 SWAP LAM m+1 PUTEL SWAP LAM m-2 PUTEL ' LAM p2 STO
                 ;
-                ::                      (type IV.4.iii.b.2)
+                ::                                                      (type IV.4.iii.b.2)
                     LAM m+2 LAM p1 GETATELN DROP %1- DUP
                     LAM p1 SWAP LAM m+2 PUTEL SWAP LAM m-1 PUTEL ' LAM p1 STO
                     %9 DUP LAM p2 SWAP LAM m+1 PUTEL SWAP LAM m-2 PUTEL ' LAM p2 STO
@@ -238,10 +238,10 @@
             ;
             LAM m LAM p1 GETATELN DROP LAM m-1 LAM c GETATELN DROP %+ %2 %=
             LAM m LAM p1 GETATELN DROP %1 %=
-            ANDcase ::                                (type IV.5)
+            ANDcase ::                                                  (type IV.5)
                 LAM m-1 LAM p3 GETATELN DROP %9 %<>
                 LAM m-1 LAM p2 GETATELN DROP %0<>
-                ANDcase ::                         (type IV.5.i)
+                ANDcase ::                                              (type IV.5.i)
                     LAM m LAM p2 GETATELN DROP %1- DUP
                     LAM p2 SWAP LAM m PUTEL SWAP LAM m-1 PUTEL ' LAM p2 STO
                     LAM m-1 LAM p3 GETATELN DROP %1+
@@ -249,7 +249,7 @@
                 ;
                 LAM m-1 LAM p3 GETATELN DROP %9 %<>
                 LAM m-1 LAM p2 GETATELN DROP %0=
-                ANDcase ::                         (type IV.5.ii)
+                ANDcase ::                                              (type IV.5.ii)
                     %0 DUP LAM p1 SWAP LAM m PUTEL SWAP LAM m+1 PUTEL ' LAM p1 STO
                     %9 DUP LAM p2 SWAP LAM m PUTEL SWAP LAM m-1 PUTEL ' LAM p2 STO
                     LAM m-1 LAM p3 GETATELN DROP %1+
@@ -257,8 +257,8 @@
                 ;
                 LAM m-1 LAM p3 GETATELN DROP %9 %=
                 LAM m-2 LAM p3 GETATELN DROP %0<>
-                ANDcase ::                         (type IV.5.iii)
-                    LAM m-2 LAM p2 GETATELN DROP %9 %<> case ::      (type IV.5.iii.a)
+                ANDcase ::                                              (type IV.5.iii)
+                    LAM m-2 LAM p2 GETATELN DROP %9 %<> case ::         (type IV.5.iii.a)
                         %0 DUP LAM p1 SWAP LAM m+1 PUTEL SWAP LAM m PUTEL ' LAM p1 STO
                         LAM m+1 LAM p2 GETATELN DROP %1+ DUP
                         LAM m LAM p2 GETATELN DROP %1+ DUP
@@ -268,7 +268,7 @@
                         LAM p3 SWAP LAM m PUTEL SWAP LAM m-2 PUTEL
                         %8 LAM m-1 PUTEL ' LAM p3 STO
                     ;
-                    LAM m-1 LAM p2 GETATELN DROP %1 %> case ::       (type IV.5.iii.b)
+                    LAM m-1 LAM p2 GETATELN DROP %1 %> case ::          (type IV.5.iii.b)
                         %2 DUP LAM p1 SWAP LAM m+1 PUTEL SWAP LAM m PUTEL ' LAM p1 STO
                         %8 DUP
                         LAM m LAM p2 GETATELN DROP %2 %- DUP
@@ -278,7 +278,7 @@
                         LAM p3 SWAP LAM m PUTEL SWAP LAM m-2 PUTEL
                         %1 LAM m-1 PUTEL ' LAM p3 STO
                     ;
-                    LAM m-1 LAM p2 GETATELN DROP %0= case ::         (type IV.5.iii.c)
+                    LAM m-1 LAM p2 GETATELN DROP %0= case ::            (type IV.5.iii.c)
                         %1 DUP LAM p1 SWAP LAM m+1 PUTEL SWAP LAM m PUTEL ' LAM p1 STO
                         %8 FOUR NDUPN DROP
                         LAM p2 SWAP LAM m+1 PUTEL SWAP LAM m PUTEL
@@ -287,7 +287,7 @@
                         LAM p3 SWAP LAM m PUTEL SWAP LAM m-2 PUTEL
                         %1 LAM m-1 PUTEL ' LAM p3 STO
                     ;
-                    (type IV.5.iii.d)
+                                                                        (type IV.5.iii.d)
                     %8 DUP %9 DUP
                     LAM p2 SWAP LAM m PUTEL SWAP LAM m-1 PUTEL
                     SWAP LAM m+1 PUTEL SWAP LAM m-2 PUTEL ' LAM p2 STO
@@ -298,17 +298,17 @@
                 LAM m-1 LAM p3 GETATELN DROP %9 %=
                 LAM m-2 LAM p3 GETATELN DROP %0= AND
                 LAM m-2 LAM p2 GETATELN DROP %0<>
-                ANDcase ::                          (type IV.5.iv)
+                ANDcase ::                                              (type IV.5.iv)
                     ::
-                        LAM m-1 LAM p2 GETATELN DROP %1 %> case ::       (type IV.5.iv.a)
+                        LAM m-1 LAM p2 GETATELN DROP %1 %> case ::      (type IV.5.iv.a)
                             %2 DUP LAM p1 SWAP LAM m PUTEL SWAP LAM m+1 PUTEL ' LAM p1 STO
                             LAM m LAM p2 GETATELN DROP %2 %- DUP
                             LAM p2 SWAP LAM m PUTEL SWAP LAM m-1 PUTEL ' LAM p2 STO
                         ;
-                        LAM m-1 LAM p2 GETATELN DROP %0= case ::         (type IV.5.iv.b)
+                        LAM m-1 LAM p2 GETATELN DROP %0= case ::        (type IV.5.iv.b)
                             %8 DUP LAM p2 SWAP LAM m PUTEL SWAP LAM m-1 PUTEL ' LAM p2 STO
                         ;
-                        (type IV.5.iv.c)
+                                                                        (type IV.5.iv.c)
                         %9 DUP LAM p2 SWAP LAM m PUTEL SWAP LAM m-1 PUTEL ' LAM p2 STO
                     ;
                     (common to .a, .b, .c)
@@ -317,22 +317,22 @@
                     %1 DUPDUP LAM p3 SWAP LAM m PUTEL SWAP LAM m-1 PUTEL
                     SWAP LAM m-2 PUTEL ' LAM p3 STO
                 ;
-                (type IV.5.v)
+                                                                        (type IV.5.v)
                 ::
-                    LAM m-1 LAM p2 GETATELN DROP %1 %> case ::       (type IV.5.v.a)
+                    LAM m-1 LAM p2 GETATELN DROP %1 %> case ::          (type IV.5.v.a)
                         %2 DUP LAM p1 SWAP LAM m+1 PUTEL SWAP LAM m PUTEL ' LAM p1 STO
                         %9 DUP
                         LAM m LAM p2 GETATELN DROP %2- DUP
                         LAM p2 SWAP LAM m PUTEL SWAP LAM m-1 PUTEL
                         SWAP LAM m+1 PUTEL SWAP LAM m-2 PUTEL ' LAM p2 STO
                     ;
-                    LAM m-1 LAM p2 GETATELN DROP %0= case ::        (type IV.5.v.b)
+                    LAM m-1 LAM p2 GETATELN DROP %0= case ::            (type IV.5.v.b)
                         %1 DUP LAM p1 SWAP LAM m+1 PUTEL SWAP LAM m PUTEL ' LAM p1 STO
                         %8 DUP %9 DUP
                         LAM p2 SWAP LAM m+1 PUTEL SWAP LAM m-2 PUTEL
                         SWAP LAM m PUTEL SWAP LAM m-1 PUTEL ' LAM p2 STO
                     ;
-                    (type IV.5.v.c)
+                                                                        (type IV.5.v.c)
                     %1 DUP LAM p1 SWAP LAM m+1 PUTEL SWAP LAM m PUTEL ' LAM p1 STO
                     %9 DUP 2DUP
                     LAM p2 SWAP LAM m+1 PUTEL SWAP LAM m-2 PUTEL
@@ -346,7 +346,7 @@
                 SWAP LAM m-2 PUTEL ' LAM p3 STO
             ;
             LAM m LAM p1 GETATELN DROP LAM m-1 LAM c GETATELN DROP %+ %3 %=
-            case ::                                             (type IV.6)
+            case ::                                                     (type IV.6)
                 LAM m LAM p2 GETATELN DROP %1- DUP
                 LAM p2 SWAP LAM m PUTEL SWAP LAM m-1 PUTEL ' LAM p2 STO
                 LAM p3 %0 LAM m-1 PUTEL ' LAM p3 STO
